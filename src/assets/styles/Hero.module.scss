@@ -564,3 +564,13 @@
     }
   }
 }
+
+@media (max-width: 360px) {
+  .heroContainer .heroContent {
+    .floatingElements {
+      .floatingCard {
+        width: 157px;
+      }
+    }
+  }
+}
