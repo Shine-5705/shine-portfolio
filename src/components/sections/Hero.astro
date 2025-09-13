@@ -2,14 +2,199 @@
 import style from '../../assets/styles/Hero.module.scss';
 import heroImage from '../../assets/images/heroImage.png';
 import { Image } from 'astro:assets';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+if (typeof window !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    const tl = gsap.timeline({ defaults: { overwrite: 'auto' } });
+
+    // Initial animations for hero elements
+    tl.from('.hero-name', { 
+      duration: 1.2, 
+      y: 100, 
+      opacity: 0, 
+      ease: 'power3.out' 
+    })
+    .from('.hero-lastname', { 
+      duration: 1.2, 
+      y: 100, 
+      opacity: 0, 
+      ease: 'power3.out' 
+    }, '-=0.8')
+    .from('.subtitle-text, .subtitle-highlight', { 
+      duration: 0.8, 
+      y: 50, 
+      opacity: 0, 
+      stagger: 0.2, 
+      ease: 'power2.out' 
+    }, '-=0.6')
+    .from('.floating-card', { 
+      duration: 1, 
+      scale: 0, 
+      rotation: 15, 
+      opacity: 0, 
+      stagger: 0.15, 
+      ease: 'back.out(1.7)' 
+    }, '-=1')
+    .from('.hero-bottom', { 
+      duration: 0.8, 
+      y: 50, 
+      opacity: 0, 
+      ease: 'power2.out' 
+    }, '-=0.4');
+
+    // Floating animations for cards
+    const floatAnimations = [
+      { target: '.card-1', y: -20, duration: 3, delay: 0 },
+      { target: '.card-2', y: -15, duration: 4, delay: 0.5 },
+      { target: '.card-3', y: -25, duration: 3.5, delay: 1 },
+      { target: '.card-4', y: -18, duration: 3.8, delay: 1.5 },
+      { target: '.card-5', y: -22, duration: 3.2, delay: 2 },
+      { target: '.card-6', y: -16, duration: 3.6, delay: 2.5 }
+    ];
+
+    floatAnimations.forEach(anim => {
+      gsap.to(anim.target, { 
+        y: anim.y, 
+        duration: anim.duration, 
+        ease: 'power1.inOut', 
+        yoyo: true, 
+        repeat: -1, 
+        delay: anim.delay 
+      });
+    });
+
+    // Parallax effect for hero image
+    gsap.to('.hero-image', {
+      yPercent: -30,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: `.${style.heroContainer}`, // Use the scoped heroContainer class
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1, // Smooth scrubbing
+        invalidateOnRefresh: true // Recalculate on resize
+      }
+    });
+  });
+}
 ---
 
 <section class={style.heroContainer}>
-    <div class={style.heroContent}>
-        <Image src={heroImage} loading="eager" alt="Hero background image" layout='constrained' class={style.heroImage} />
-        <div class={style.heroText}>
-            <h1 class={style.heroName}>Shine</h1>
-            <h1 class={style.heroLastName}>Gupta</h1>
+  <div class={style.heroContent}>
+    <Image src={heroImage} loading="eager" alt="Hero background image" layout='constrained' class={style.heroImage + ' hero-image'} />
+    
+    <div class={style.floatingElements}>
+      <div class={style.floatingCard + ' ' + style.card1 + ' floating-card card-1'}>
+        <div class={style.cardContent}>
+          <span class={style.cardLabel}>Data Scientist</span>
+          <p class={style.cardText}>Transforming complex data into actionable insights through advanced analytics</p>
+          <div class={style.cardStats}>
+            <div class={style.statItem}>
+              <span class={style.statNumber}>95%</span>
+              <span class={style.statLabel}>Accuracy</span>
+            </div>
+            <div class={style.statItem}>
+              <span class={style.statNumber}>50+</span>
+              <span class={style.statLabel}>Models</span>
+            </div>
+          </div>
         </div>
+      </div>
+      
+      <div class={style.floatingCard + ' ' + style.card2 + ' floating-card card-2'}>
+        <div class={style.cardContent}>
+          <span class={style.cardIcon}>🚀</span>
+          <span class={style.cardNumber}>5+</span>
+          <span class={style.cardUnit}>Years Experience</span>
+          <p class={style.cardDescription}>Leading data-driven solutions across multiple industries</p>
+        </div>
+      </div>
+      
+      <div class={style.floatingCard + ' ' + style.card3 + ' floating-card card-3'}>
+        <div class={style.cardContent}>
+          <span class={style.cardLabel}>Tech Stack</span>
+          <div class={style.cardSkills}>
+            <span>Python</span>
+            <span>TensorFlow</span>
+            <span>PyTorch</span>
+            <span>SQL</span>
+            <span>AWS</span>
+            <span>Docker</span>
+          </div>
+        </div>
+      </div>
+
+      <div class={style.floatingCard + ' ' + style.card4 + ' floating-card card-4'}>
+        <div class={style.cardContent}>
+          <span class={style.cardLabel}>Achievements</span>
+          <div class={style.achievementList}>
+            <div class={style.achievement}>
+              <span class={style.achievementIcon}>🏆</span>
+              <span class={style.achievementText}>Best ML Project 2024</span>
+            </div>
+            <div class={style.achievement}>
+              <span class={style.achievementIcon}>📊</span>
+              <span class={style.achievementText}>Published Research</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class={style.floatingCard + ' ' + style.card5 + ' floating-card card-5'}>
+        <div class={style.cardContent}>
+          <span class={style.cardLabel}>Current Focus</span>
+          <p class={style.cardText}>Building interpretable AI systems for healthcare diagnostics</p>
+          <div class={style.progressBar}>
+            <div class={style.progressFill}></div>
+            <span class={style.progressText}>In Progress</span>
+          </div>
+        </div>
+      </div>
+
+      <div class={style.floatingCard + ' ' + style.card6 + ' floating-card card-6'}>
+        <div class={style.cardContent}>
+          <span class={style.cardLabel}>Education</span>
+          <div class={style.educationInfo}>
+            <span class={style.degree}>PhD Data Science</span>
+            <span class={style.university}>Stanford University</span>
+          </div>
+          <div class={style.certifications}>
+            <span>AWS Certified</span>
+            <span>Google Cloud</span>
+          </div>
+        </div>
+      </div>
     </div>
+    
+    <div class={style.heroText}>
+      <h1 class={style.heroName + ' hero-name'}>Shine</h1>
+      <h1 class={style.heroLastName + ' hero-lastname'}>Gupta</h1>
+      <div class={style.heroSubtitle + ' hero-subtitle'}>
+        <span class={style.subtitle + ' subtitle-text'}>Creating intelligent solutions through</span>
+        <span class={style.subtitleHighlight + ' subtitle-highlight'}>data science & machine learning</span>
+      </div>
+    </div>
+    
+    <div class={style.heroBottom + ' hero-bottom'}>
+      <div class={style.ctaButtons}>
+        <button class={style.primaryBtn}>View Projects</button>
+        <button class={style.secondaryBtn}>Contact Me</button>
+      </div>
+      <div class={style.scrollIndicator}>
+        <div class={style.scrollLine}></div>
+        <span class={style.scrollText}>Scroll to explore</span>
+      </div>
+    </div>
+    
+    <div class={style.dotsPattern + ' dots-1'}></div>
+    <div class={style.dotsPattern + ' ' + style.dots2 + ' dots-2'}></div>
+    <div class={style.dotsPattern + ' ' + style.dots3 + ' dots-3'}></div>
+    <div class={style.dotsPattern + ' ' + style.dots4 + ' dots-4'}></div>
+    
+    <div class={style.gradientOverlay}></div>
+  </div>
 </section>

@@ -2,82 +2,555 @@
 @use './font';
 
 .heroContainer {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    background-color: colour.$pure-black;
-    z-index: -2;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: colour.$pure-black;
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 0;
+  .heroContent {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    .heroImage {
+      position: absolute;
+      width: 110%;
+      height: 110%;
+      object-fit: cover;
+      z-index: 1;
+      top: -5%;
+      left: -5%;
     }
 
-    .heroContent {
+    .gradientOverlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 2;
+    }
+
+    .dotsPattern {
+      position: absolute;
+      background-image: radial-gradient(circle, colour.$rose-pink 1px, transparent 1px);
+      background-size: 15px 15px;
+      opacity: 0.4;
+      z-index: 3;
+
+      &:first-of-type {
+        top: 8%;
+        right: 5%;
+        width: 180px;
+        height: 180px;
+      }
+    }
+
+    .dots2 {
+      top: 65%;
+      left: 5%;
+      width: 140px;
+      height: 140px;
+      opacity: 0.3;
+      background-size: 12px 12px;
+    }
+
+    .dots3 {
+      top: 15%;
+      left: 10%;
+      width: 90px;
+      height: 90px;
+      opacity: 0.35;
+      background-size: 10px 10px;
+    }
+
+    .dots4 {
+      bottom: 10%;
+      right: 15%;
+      width: 100px;
+      height: 100px;
+      opacity: 0.25;
+      background-size: 8px 8px;
+    }
+
+    .floatingElements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+
+      .floatingCard {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(215, 171, 197, 0.3);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        min-width: 180px;
+        max-width: 280px;
+
+        &:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 25px 70px rgba(215, 171, 197, 0.4);
+          border-color: rgba(215, 171, 197, 0.5);
+          background: rgba(255, 255, 255, 0.2);
+        }
+
+        .cardContent {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+
+          .cardLabel {
+            color: colour.$rose-pink;
+            @include font.body-small;
+            font-weight: font.$font-weight-semibold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+          }
+
+          .cardText {
+            color: colour.$soft-gray;
+            @include font.body-regular;
+            line-height: font.$line-height-relaxed;
+            margin: 0;
+            max-width: 220px;
+          }
+
+          .cardDescription {
+            color: colour.$soft-gray;
+            @include font.body-small;
+            line-height: font.$line-height-relaxed;
+            margin: 0;
+            opacity: 0.9;
+          }
+
+          .cardIcon {
+            font-size: font.$font-size-2xl;
+            margin-bottom: 8px;
+          }
+
+          .cardNumber {
+            color: colour.$rose-pink;
+            font-family: font.$font-heading;
+            font-size: font.$font-size-4xl;
+            font-weight: font.$font-weight-regular;
+            line-height: font.$line-height-tight;
+          }
+
+          .cardUnit {
+            color: colour.$soft-gray;
+            @include font.body-regular;
+            font-weight: font.$font-weight-medium;
+            opacity: 0.9;
+            margin-top: -8px;
+          }
+
+          .cardStats {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+
+            .statItem {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+
+              .statNumber {
+                color: colour.$rose-pink;
+                font-family: font.$font-heading;
+                font-size: font.$font-size-xl;
+                font-weight: font.$font-weight-regular;
+                line-height: font.$line-height-tight;
+              }
+
+              .statLabel {
+                color: colour.$soft-gray;
+                font-size: font.$font-size-xs;
+                font-weight: font.$font-weight-medium;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                opacity: 0.8;
+              }
+            }
+          }
+
+          .cardSkills {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+
+            span {
+              background: rgba(215, 171, 197, 0.2);
+              color: colour.$rose-pink;
+              padding: 8px 12px;
+              border-radius: 16px;
+              font-size: font.$font-size-xs;
+              font-weight: font.$font-weight-medium;
+              font-family: font.$font-mono;
+              text-align: center;
+            }
+          }
+
+          .cardExtra {
+            margin-top: 8px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(215, 171, 197, 0.2);
+
+            .extraLabel {
+              color: colour.$rose-pink;
+              font-size: font.$font-size-xs;
+              font-weight: font.$font-weight-semibold;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              display: block;
+              margin-bottom: 4px;
+            }
+
+            .extraText {
+              color: colour.$soft-gray;
+              @include font.body-small;
+              font-weight: font.$font-weight-medium;
+            }
+          }
+
+          .achievementList {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            .achievement {
+              display: flex;
+              align-items: center;
+              gap: 12px;
+
+              .achievementIcon {
+                font-size: font.$font-size-lg;
+              }
+
+              .achievementText {
+                color: colour.$soft-gray;
+                @include font.body-small;
+                font-weight: font.$font-weight-medium;
+              }
+            }
+          }
+
+          .progressBar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+
+            .progressFill {
+              flex: 1;
+              height: 4px;
+              background: rgba(215, 171, 197, 0.3);
+              border-radius: 2px;
+              position: relative;
+
+              &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 70%;
+                height: 100%;
+                background: colour.$rose-pink;
+                border-radius: 2px;
+              }
+            }
+
+            .progressText {
+              color: colour.$rose-pink;
+              font-size: font.$font-size-xs;
+              font-weight: font.$font-weight-medium;
+            }
+          }
+
+          .educationInfo {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 12px;
+
+            .degree {
+              color: colour.$rose-pink;
+              @include font.body-regular;
+              font-weight: font.$font-weight-semibold;
+            }
+
+            .university {
+              color: colour.$soft-gray;
+              @include font.body-small;
+              opacity: 0.9;
+            }
+          }
+
+          .certifications {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+
+            span {
+              background: rgba(215, 171, 197, 0.15);
+              color: colour.$rose-pink;
+              padding: 4px 8px;
+              border-radius: 12px;
+              font-size: font.$font-size-xs;
+              font-weight: font.$font-weight-medium;
+            }
+          }
+        }
+      }
+
+      // Adjusted card positions to prevent overlap
+      .card1 { top: 10%; right: 8%; }
+      .card2 { top: 15%; left: 8%; }
+      .card3 { bottom: 30%; right: 10%; }
+      .card4 { bottom: 15%; left: 10%; }
+      .card5 { top: 40%; right: 12%; }
+      .card6 { top: 50%; left: 12%; }
+    }
+
+    .heroText {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 4;
+      width: 100%;
+      max-width: 1000px; // Reduced for better balance
+
+      .heroName,
+      .heroLastName {
+        font-family: font.$font-heading;
+        font-size: clamp(100px, 10vw, 200px); // Slightly smaller for better spacing
+        font-weight: font.$font-weight-regular;
+        margin: 0;
+        line-height: font.$line-height-tight;
+        color: colour.$rose-pink;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 20px rgba(215, 171, 197, 0.3);
+        letter-spacing: 0.02em;
+      }
+
+      .heroName { margin-bottom: -10px; }
+
+      .heroSubtitle {
+        margin-top: 30px;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
         align-items: center;
 
-        .heroText {
-            position: absolute;
-            top: 5%;
-            color: colour.$rose-pink;
-            z-index: 1;
-            width: 100%;
-
-            .heroName,
-            .heroLastName {
-                display: flex;
-                font-family: font.$font-heading;
-                font-size: 280px;
-                margin: 0;
-                position: relative;
-            }
-
-            .heroName {
-                right: 20%;
-                justify-content: flex-end;
-            }
-
-            .heroLastName {
-                left: 25%;
-            }
-
+        .subtitle {
+          color: colour.$soft-gray;
+          @include font.body-large;
+          font-weight: font.$font-weight-light;
+          opacity: 0.95;
+          letter-spacing: 0.5px;
         }
 
-        .heroImage {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            z-index: -1;
-            top: 0;
+        .subtitleHighlight {
+          color: colour.$rose-pink;
+          font-family: font.$font-heading;
+          font-size: clamp(18px, 2.2vw, 24px);
+          font-weight: font.$font-weight-regular;
+          text-transform: uppercase;
+          letter-spacing: 2.5px;
+          line-height: font.$line-height-tight;
         }
+      }
     }
+
+    .heroBottom {
+      position: absolute;
+      bottom: 60px; // Raised slightly to avoid overlap with cards
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      z-index: 4;
+
+      .ctaButtons {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        .primaryBtn {
+          background: colour.$gradient-primary;
+          color: colour.$text-inverse;
+          border: none;
+          padding: 14px 28px;
+          border-radius: 50px;
+          @include font.body-regular;
+          font-weight: font.$font-weight-semibold;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: colour.$shadow-pink;
+          letter-spacing: 0.5px;
+
+          &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(215, 171, 197, 0.4);
+            background: linear-gradient(135deg, colour.$rose-pink, colour.$rose-pink-dark);
+          }
+        }
+
+        .secondaryBtn {
+          background: transparent;
+          color: colour.$rose-pink;
+          border: 2px solid colour.$rose-pink;
+          padding: 12px 26px;
+          border-radius: 50px;
+          @include font.body-regular;
+          font-weight: font.$font-weight-semibold;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          letter-spacing: 0.5px;
+
+          &:hover {
+            background: colour.$rose-pink;
+            color: colour.$text-inverse;
+            transform: translateY(-3px);
+            box-shadow: colour.$shadow-pink;
+          }
+        }
+      }
+
+      .scrollIndicator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+
+        .scrollLine {
+          width: 2px;
+          height: 40px;
+          background: linear-gradient(to bottom, colour.$rose-pink, transparent);
+          position: relative;
+          border-radius: 1px;
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: -4px;
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid colour.$rose-pink;
+            border-bottom: 2px solid colour.$rose-pink;
+            transform: rotate(45deg);
+          }
+        }
+
+        .scrollText {
+          color: colour.$soft-gray;
+          @include font.body-small;
+          font-weight: font.$font-weight-light;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
 }
 
-@media (max-width: 768px){
-    .heroContainer {
-        .heroContent {
-            .heroText {
-                right: 5%;
-
-                .heroName,
-                .heroLastName {
-                    font-size: 180px;
-                } 
-            }
-
-            .heroImage {
-                left: 0;
-            }
-        }
+@media (max-width: 1200px) {
+  .heroContainer .heroContent {
+    .floatingElements {
+      .card1 { top: 8%; right: 6%; }
+      .card2 { top: 12%; left: 6%; }
+      .card3 { bottom: 28%; right: 8%; }
+      .card4 { bottom: 12%; left: 8%; }
+      .card5 { top: 38%; right: 8%; }
+      .card6 { top: 48%; left: 10%; }
     }
+
+    .heroText {
+      max-width: 800px;
+      .heroName, .heroLastName { font-size: clamp(80px, 9vw, 160px); }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .heroContainer .heroContent {
+    .dotsPattern {
+      &:first-of-type { width: 120px; height: 120px; top: 6%; right: 3%; }
+    }
+    .dots2 { width: 80px; height: 80px; top: 60%; left: 3%; }
+    .dots3 { width: 60px; height: 60px; top: 12%; left: 8%; }
+    .dots4 { width: 70px; height: 70px; bottom: 8%; right: 10%; }
+
+    .floatingElements {
+      .floatingCard {
+        padding: 16px;
+        transform: scale(0.9);
+        min-width: 160px;
+        max-width: 220px;
+      }
+      .card1 { top: 6%; right: 4%; }
+      .card2 { top: 10%; left: 4%; }
+      .card3 { bottom: 30%; right: 5%; }
+      .card4 { bottom: 10%; left: 5%; }
+      .card5 { top: 35%; right: 3%; }
+      .card6 { top: 45%; left: 6%; }
+    }
+
+    .heroText {
+      .heroName, .heroLastName { font-size: clamp(60px, 12vw, 120px); }
+      .heroSubtitle {
+        margin-top: 20px;
+        padding: 0 16px;
+        .subtitle { font-size: font.$font-size-base; }
+        .subtitleHighlight { font-size: clamp(14px, 3.5vw, 20px); letter-spacing: 2px; }
+      }
+    }
+
+    .heroBottom {
+      bottom: 40px;
+      .ctaButtons {
+        flex-direction: column;
+        gap: 12px;
+        .primaryBtn, .secondaryBtn { width: 180px; padding: 12px 24px; font-size: font.$font-size-sm; }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .heroContainer .heroContent {
+    .floatingElements {
+      .floatingCard { transform: scale(0.8); padding: 12px; min-width: 140px; max-width: 180px; }
+      .cardSkills { grid-template-columns: repeat(2, 1fr); }
+      .card3, .card5, .card6 { display: none; } // Hide cards to reduce clutter
+      .card1 { top: 5%; right: 2%; }
+      .card2 { top: 8%; left: 2%; }
+      .card4 { bottom: 8%; left: 3%; }
+    }
+
+    .heroText {
+      max-width: 100%;
+      padding: 0 12px;
+      .heroName, .heroLastName { font-size: clamp(40px, 10vw, 80px); }
+      .heroSubtitle .subtitleHighlight { font-size: clamp(12px, 3vw, 16px); letter-spacing: 1.5px; }
+    }
+
+    .heroBottom {
+      bottom: 30px;
+      .ctaButtons .primaryBtn, .ctaButtons .secondaryBtn { width: 160px; padding: 10px 20px; font-size: font.$font-size-xs; }
+    }
+  }
 }
