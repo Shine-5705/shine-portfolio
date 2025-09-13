@@ -9,7 +9,7 @@ import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://shine-portfolio-puce.vercel.app',
+    site: 'https://shine-portfolio-new.netlify.app',
   output: 'server',
   adapter: netlify(),
   integrations: [sitemap(), robotsTxt()],
