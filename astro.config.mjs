@@ -7,7 +7,7 @@ import robotsTxt from 'astro-robots-txt';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://www.example.com',
+    site: 'https://shine-portfolio-puce.vercel.app',
 
   integrations: [sitemap(), robotsTxt()],
   build: {
