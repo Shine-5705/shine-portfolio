@@ -1,0 +1,15 @@
+---
+import style from '../../assets/styles/Hero.module.scss';
+import heroImage from '../../assets/images/heroImage.png';
+import { Image } from 'astro:assets';
+---
+
+<section class={style.heroContainer}>
+    <div class={style.heroContent}>
+        <Image src={heroImage} alt="Hero background image" layout='constrained' class={style.heroImage} />
+        <div class={style.heroText}>
+            <h1 class={style.heroName}>Shine</h1>
+            <h1 class={style.heroLastName}>Gupta</h1>
+        </div>
+    </div>
+</section>
