@@ -154,9 +154,9 @@
                         margin-top: 4px;
                     }
 
-                    &:nth-child(1) { top: -10px; right: -20px; }
-                    &:nth-child(2) { top: 50%; left: -30px; transform: translateY(-50%); }
-                    &:nth-child(3) { bottom: 20px; right: -15px; }
+                    &:nth-child(1) { top: -50px; right: -90px; }
+                    &:nth-child(2) { top: 50%; left: -100px; transform: translateY(-50%); }
+                    &:nth-child(3) { bottom: -20px; right: -15px; }
                 }
             }
         }
@@ -495,5 +495,76 @@
             .personalInfo { padding: 25px; }
         }
         .experienceTimeline { padding: 40px 20px; }
+    }
+}
+
+@media (max-width: 480px) {
+    .aboutContainer {
+        .experienceTimeline {
+            padding: 30px 15px;
+            border-radius: 20px;
+
+            .timelineTitle {
+                font-size: font.$font-size-xl;
+                margin-bottom: 30px;
+            }
+
+            .timeline {
+                max-width: 100%;
+
+                &::before {
+                    left: 20px;
+                    width: 2px;
+                }
+
+                .timelineItem {
+                    grid-template-columns: 1fr;
+                    gap: 0;
+                    margin: 25px 0;
+                    padding-left: 45px;
+
+                    &::before {
+                        left: 10px;
+                        transform: none;
+                        width: 15px;
+                        height: 15px;
+                        border: 3px solid colour.$pure-black;
+                    }
+
+                    &:nth-child(even) {
+                        .timelineDate { order: 1; text-align: left; }
+                        .timelineContent { order: 2; text-align: left; }
+                    }
+
+                    .timelineDate {
+                        text-align: left;
+                        font-size: font.$font-size-base;
+                        margin-bottom: 8px;
+                        order: 1;
+                    }
+
+                    .timelineContent {
+                        padding: 20px;
+                        border-radius: 16px;
+                        order: 2;
+
+                        .timelineRole {
+                            font-size: font.$font-size-lg;
+                            margin-bottom: 8px;
+                        }
+
+                        .timelineCompany {
+                            font-size: font.$font-size-sm;
+                            margin-bottom: 10px;
+                        }
+
+                        .timelineDesc {
+                            font-size: font.$font-size-sm;
+                            line-height: 1.4;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
