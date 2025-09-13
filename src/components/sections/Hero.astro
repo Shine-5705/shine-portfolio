@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 
 <section class={style.heroContainer}>
     <div class={style.heroContent}>
-        <Image src={heroImage} alt="Hero background image" layout='constrained' class={style.heroImage} />
+        <Image src={heroImage} loading="eager" alt="Hero background image" layout='constrained' class={style.heroImage} />
         <div class={style.heroText}>
             <h1 class={style.heroName}>Shine</h1>
             <h1 class={style.heroLastName}>Gupta</h1>
