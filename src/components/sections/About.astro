@@ -1,0 +1,360 @@
+---
+import style from '../../assets/styles/About.module.scss';
+import { Image } from 'astro:assets';
+import profileImage from '../../assets/images/profile-image.jpg';
+import atomImg from '../../assets/images/atom.png';
+---
+
+<section class={style.aboutContainer + ' about-container'}>
+    <div class={style.floatingImages}>
+        <Image src={atomImg} alt="atom image" class={style.floatingImg + ' ' + style.img1} />
+        <Image src={atomImg} alt="atom image" class={style.floatingImg + ' ' + style.img2} />
+        <Image src={atomImg} alt="atom image" class={style.floatingImg + ' ' + style.img3} />
+        <Image src={atomImg} alt="atom image" class={style.floatingImg + ' ' + style.img4} />
+        <Image src={atomImg} alt="atom image" class={style.floatingImg + ' ' + style.img5} />
+    </div>
+
+    <div class={style.aboutContent + ' about-content'}>
+        <div class={style.sectionHeader + ' section-header'}>
+            <span class={style.sectionTag + ' section-tag'}>Get to know me</span>
+            <h2 class={style.sectionTitle + ' section-title'}>About Shine</h2>
+            <div class={style.titleUnderline + ' title-underline'}></div>
+        </div>
+
+        <div class={style.aboutGrid}>
+            <div class={style.profileSection + ' profile-section'}>
+                <div class={style.imageContainer + ' image-container'}>
+                    <div class={style.imageBorder}></div>
+                    <div class={style.profileImage + ' profile-image'}>
+                        <Image src={profileImage} loading="lazy" layout='constrained' alt="Shine Gupta" class={style.photo} />
+                    </div>
+                    <div class={style.floatingStats + ' floating-stats'}>
+                        <div class={style.stat + ' stat-1'}>
+                            <span class={style.statNumber}>150+</span>
+                            <span class={style.statLabel}>Projects</span>
+                        </div>
+                        <div class={style.stat + ' stat-2'}>
+                            <span class={style.statNumber}>8</span>
+                            <span class={style.statLabel}>Awards</span>
+                        </div>
+                        <div class={style.stat + ' stat-3'}>
+                            <span class={style.statNumber}>99%</span>
+                            <span class={style.statLabel}>Success Rate</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class={style.skillsOverview + ' skills-overview'}>
+                    <h3 class={style.skillsTitle + ' skills-title'}>Core Expertise</h3>
+                    <div class={style.skillBars + ' skill-bars'}>
+                        <div class={style.skillBar + ' skill-bar'}>
+                            <div class={style.skillInfo}>
+                                <span class={style.skillName}>Machine Learning</span>
+                                <span class={style.skillPercent}>98%</span>
+                            </div>
+                            <div class={style.skillProgress}>
+                                <div class={style.skillFill + ' skill-fill-ml'} data-percent="98"></div>
+                            </div>
+                        </div>
+                        
+                        <div class={style.skillBar + ' skill-bar'}>
+                            <div class={style.skillInfo}>
+                                <span class={style.skillName}>Data Visualization</span>
+                                <span class={style.skillPercent}>95%</span>
+                            </div>
+                            <div class={style.skillProgress}>
+                                <div class={style.skillFill + ' skill-fill-viz'} data-percent="95"></div>
+                            </div>
+                        </div>
+                        
+                        <div class={style.skillBar + ' skill-bar'}>
+                            <div class={style.skillInfo}>
+                                <span class={style.skillName}>Statistical Analysis</span>
+                                <span class={style.skillPercent}>96%</span>
+                            </div>
+                            <div class={style.skillProgress}>
+                                <div class={style.skillFill + ' skill-fill-stats'} data-percent="96"></div>
+                            </div>
+                        </div>
+                        
+                        <div class={style.skillBar + ' skill-bar'}>
+                            <div class={style.skillInfo}>
+                                <span class={style.skillName}>Deep Learning</span>
+                                <span class={style.skillPercent}>92%</span>
+                            </div>
+                            <div class={style.skillProgress}>
+                                <div class={style.skillFill + ' skill-fill-dl'} data-percent="92"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class={style.contentSection + ' content-section'}>
+                <div class={style.storyCard + ' story-card'}>
+                    <div class={style.cardIcon}>🎯</div>
+                    <h3 class={style.cardTitle + ' card-title'}>My Journey</h3>
+                    <p class={style.cardText + ' card-text'}>
+                        From a curious mathematics student to a leading data scientist, my journey has been driven by an insatiable appetite for uncovering patterns in chaos. I believe data tells stories that can change the world.
+                    </p>
+                </div>
+
+                <div class={style.storyCard + ' story-card'}>
+                    <div class={style.cardIcon}>💡</div>
+                    <h3 class={style.cardTitle + ' card-title'}>Philosophy</h3>
+                    <p class={style.cardText + ' card-text'}>
+                        Every dataset holds secrets waiting to be discovered. I combine rigorous statistical methods with creative problem-solving to extract actionable insights that drive meaningful business outcomes.
+                    </p>
+                </div>
+
+                <div class={style.storyCard + ' story-card'}>
+                    <div class={style.cardIcon}>🚀</div>
+                    <h3 class={style.cardTitle + ' card-title'}>Impact</h3>
+                    <p class={style.cardText + ' card-text'}>
+                        My work has helped organizations increase efficiency by 40%, reduce costs by $2M+, and make data-driven decisions that transformed entire business strategies. I don't just analyze data—I create value.
+                    </p>
+                </div>
+
+                <div class={style.personalInfo + ' personal-info'}>
+                    <h3 class={style.infoTitle + ' info-title'}>Beyond the Data</h3>
+                    <div class={style.infoGrid + ' info-grid'}>
+                        <div class={style.infoItem + ' info-item'}>
+                            <div class={style.infoIcon}>🎨</div>
+                            <div class={style.infoContent}>
+                                <span class={style.infoLabel}>Creative Passion</span>
+                                <span class={style.infoValue}>Digital Art & Design</span>
+                            </div>
+                        </div>
+                        
+                        <div class={style.infoItem + ' info-item'}>
+                            <div class={style.infoIcon}>📚</div>
+                            <div class={style.infoContent}>
+                                <span class={style.infoLabel}>Learning</span>
+                                <span class={style.infoValue}>Quantum Computing</span>
+                            </div>
+                        </div>
+                        
+                        <div class={style.infoItem + ' info-item'}>
+                            <div class={style.infoIcon}>🌍</div>
+                            <div class={style.infoContent}>
+                                <span class={style.infoLabel}>Impact Goal</span>
+                                <span class={style.infoValue}>AI for Social Good</span>
+                            </div>
+                        </div>
+                        
+                        <div class={style.infoItem + ' info-item'}>
+                            <div class={style.infoIcon}>☕</div>
+                            <div class={style.infoContent}>
+                                <span class={style.infoLabel}>Fuel</span>
+                                <span class={style.infoValue}>Coffee & Curiosity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class={style.experienceTimeline + ' experience-timeline'}>
+            <h3 class={style.timelineTitle + ' timeline-title'}>Professional Journey</h3>
+            <div class={style.timeline + ' timeline'}>
+                <div class={style.timelineItem + ' timeline-item'}>
+                    <div class={style.timelineDate + ' timeline-date'}>2024 - Present</div>
+                    <div class={style.timelineContent + ' timeline-content'}>
+                        <h4 class={style.timelineRole}>Senior Data Scientist</h4>
+                        <span class={style.timelineCompany}>Tech Innovations Inc</span>
+                        <p class={style.timelineDesc}>Leading AI initiatives and building predictive models that serve 10M+ users daily</p>
+                    </div>
+                </div>
+                
+                <div class={style.timelineItem + ' timeline-item'}>
+                    <div class={style.timelineDate + ' timeline-date'}>2022 - 2024</div>
+                    <div class={style.timelineContent + ' timeline-content'}>
+                        <h4 class={style.timelineRole}>Data Scientist</h4>
+                        <span class={style.timelineCompany}>Analytics Pro</span>
+                        <p class={style.timelineDesc}>Developed ML pipelines and reduced model deployment time by 60%</p>
+                    </div>
+                </div>
+                
+                <div class={style.timelineItem + ' timeline-item'}>
+                    <div class={style.timelineDate + ' timeline-date'}>2020 - 2022</div>
+                    <div class={style.timelineContent + ' timeline-content'}>
+                        <h4 class={style.timelineRole}>Junior Data Analyst</h4>
+                        <span class={style.timelineCompany}>StartupXYZ</span>
+                        <p class={style.timelineDesc}>Built dashboards and automated reporting systems for C-level executives</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Set initial opacity to 1 for all elements to prevent flash
+  gsap.set(['.section-tag', '.section-title', '.title-underline', '.image-container', '.floating-stats .stat-1', '.floating-stats .stat-2', '.floating-stats .stat-3', '.skills-title', '.skill-bar', '.story-card', '.info-title', '.info-item', '.timeline-title', '.timeline-item'], { opacity: 1 });
+
+  // Section header animation
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '.about-container',
+      start: 'top 80%',
+      end: 'top 20%',
+      toggleActions: 'play none none reverse'
+    }
+  })
+  .fromTo('.section-tag', { y: 30, opacity: 0 }, { duration: 0.8, y: 0, opacity: 1, ease: 'power3.out' })
+  .fromTo('.section-title', { y: 50, opacity: 0 }, { duration: 1, y: 0, opacity: 1, ease: 'power3.out' }, '-=0.6')
+  .fromTo('.title-underline', { scaleX: 0, opacity: 0 }, { duration: 1, scaleX: 1, opacity: 1, ease: 'power3.out' }, '-=0.4');
+
+  // Profile section animations
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '.profile-section',
+      start: 'top 75%',
+      end: 'bottom 25%',
+      toggleActions: 'play none none reverse'
+    }
+  })
+  .fromTo('.image-container', { scale: 0.8, rotation: 5, opacity: 0 }, { duration: 1.2, scale: 1, rotation: 0, opacity: 1, ease: 'back.out(1.7)' })
+  .fromTo('.floating-stats .stat-1', { x: -50, opacity: 0 }, { duration: 1, x: 0, opacity: 1, ease: 'power3.out' }, '-=0.8')
+  .fromTo('.floating-stats .stat-2', { y: -50, opacity: 0 }, { duration: 1, y: 0, opacity: 1, ease: 'power3.out' }, '-=0.6')
+  .fromTo('.floating-stats .stat-3', { x: 50, opacity: 0 }, { duration: 1, x: 0, opacity: 1, ease: 'power3.out' }, '-=0.4');
+
+  // Skills animation with progress bars
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '.skills-overview',
+      start: 'top 80%',
+      end: 'bottom 20%',
+      toggleActions: 'play none none reverse'
+    }
+  })
+  .fromTo('.skills-title', { y: 30, opacity: 0 }, { duration: 0.8, y: 0, opacity: 1, ease: 'power3.out' })
+  .fromTo('.skill-bar', { x: -30, opacity: 0 }, { duration: 0.6, x: 0, opacity: 1, stagger: 0.1, ease: 'power2.out' }, '-=0.4');
+
+  // Animate skill progress bars
+  const skillFills = gsap.utils.toArray<HTMLElement>('.skill-fill-ml, .skill-fill-viz, .skill-fill-stats, .skill-fill-dl');
+  skillFills.forEach((fill) => {
+    const percent = fill.getAttribute('data-percent');
+    gsap.fromTo(fill, 
+      { width: '0%' },
+      {
+        width: percent + '%',
+        duration: 1.5,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: fill,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    );
+  });
+
+  // Story cards cascade animation
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '.content-section',
+      start: 'top 70%',
+      end: 'bottom 30%',
+      toggleActions: 'play none none reverse'
+    }
+  })
+  .fromTo('.story-card', 
+    { y: 60, rotation: 3, opacity: 0 },
+    { duration: 1, y: 0, rotation: 0, opacity: 1, stagger: 0.2, ease: 'back.out(1.2)' }
+  );
+
+  // Personal info grid animation
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '.personal-info',
+      start: 'top 80%',
+      end: 'bottom 20%',
+      toggleActions: 'play none none reverse'
+    }
+  })
+  .fromTo('.info-title', { y: 30, opacity: 0 }, { duration: 0.8, y: 0, opacity: 1, ease: 'power3.out' })
+  .fromTo('.info-item', 
+    { scale: 0.8, opacity: 0 },
+    { duration: 0.8, scale: 1, opacity: 1, stagger: 0.15, ease: 'back.out(1.4)' }, 
+    '-=0.4'
+  );
+
+  // Timeline animation
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '.experience-timeline',
+      start: 'top 75%',
+      end: 'bottom 25%',
+      toggleActions: 'play none none reverse'
+    }
+  })
+  .fromTo('.timeline-title', { y: 40, opacity: 0 }, { duration: 1, y: 0, opacity: 1, ease: 'power3.out' })
+  .fromTo('.timeline-item', 
+    { x: -80, opacity: 0 },
+    { duration: 1.2, x: 0, opacity: 1, stagger: 0.3, ease: 'power3.out' }, 
+    '-=0.5'
+  );
+
+  // Continuous floating animations for stats
+  gsap.to('.stat-1', {
+    y: -15,
+    duration: 2.5,
+    ease: 'power1.inOut',
+    yoyo: true,
+    repeat: -1
+  });
+
+  gsap.to('.stat-2', {
+    y: -20,
+    duration: 3,
+    ease: 'power1.inOut',
+    yoyo: true,
+    repeat: -1,
+    delay: 0.5
+  });
+
+  gsap.to('.stat-3', {
+    y: -12,
+    duration: 2.8,
+    ease: 'power1.inOut',
+    yoyo: true,
+    repeat: -1,
+    delay: 1
+  });
+
+  // Parallax effect for profile image
+  gsap.to('.profile-image', {
+    yPercent: -20,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.about-container',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1
+    }
+  });
+
+  // Hover animations for story cards
+  const storyCards = gsap.utils.toArray<HTMLElement>('.story-card');
+  storyCards.forEach((card) => {
+    const tl = gsap.timeline({ paused: true });
+    tl.to(card, { 
+      scale: 1.05, 
+      y: -10, 
+      boxShadow: '0 20px 60px rgba(215, 171, 197, 0.3)',
+      duration: 0.3, 
+      ease: 'power2.out' 
+    });
+
+    card.addEventListener('mouseenter', () => tl.play());
+    card.addEventListener('mouseleave', () => tl.reverse());
+  });
+});
+</script>
