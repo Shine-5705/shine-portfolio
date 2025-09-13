@@ -1,3 +1,24 @@
+---
+import SEO from "../components/SEO.astro";
+
+export interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	canonical?: string;
+	noindex?: boolean;
+	nofollow?: boolean;
+}
+
+const {
+	title,
+	description,
+	image,
+	canonical,
+	noindex = false,
+	nofollow = false,
+} = Astro.props;
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -5,10 +26,10 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Shine Gupta | Portfolio</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+		<SEO title={title} description={description} image={image} canonical={canonical} noindex={noindex} nofollow={nofollow} />
 	</head>
 	<body>
 		<slot />

@@ -1,0 +1,230 @@
+@use "sass:color";
+
+// Primary color palette
+$rose-pink: #D7ABC5;     // Main romantic accent
+$soft-gray: #ececec;     // Light neutral
+$pure-black: #000000;    // Strong contrast
+
+// Extended palette based on your core colors
+$rose-pink-light: color.adjust($rose-pink, $lightness: 15%);    // #E8C7DA
+$rose-pink-dark: color.adjust($rose-pink, $lightness: -15%);     // #C189A8
+$rose-pink-muted: color.adjust($rose-pink, $saturation: -20%);   // #D1B1C1
+
+$soft-gray-light: color.adjust($soft-gray, $lightness: 5%);      // #F5F5F5
+$soft-gray-dark: color.adjust($soft-gray, $lightness: -15%);     // #C8C8C8
+$warm-gray: #F8F8F8;                                             // Warmer neutral
+$mid-gray: #888888;                                              // Medium gray
+$charcoal: #333333;                                              // Softer than pure black
+
+// Data science inspired accent colors
+$data-blue: #6366F1;        // Algorithm blue
+$success-green: #10B981;    // Model success
+$warning-amber: #F59E0B;    // Attention/warning
+$error-red: #EF4444;        // Error states
+$insight-purple: #8B5CF6;   // Insights/analysis
+
+// Semantic color variables
+$primary: $rose-pink;
+$primary-light: $rose-pink-light;
+$primary-dark: $rose-pink-dark;
+$primary-muted: $rose-pink-muted;
+
+$secondary: $data-blue;
+$accent: $insight-purple;
+
+$background: $warm-gray;
+$background-alt: $soft-gray;
+$surface: #FFFFFF;
+$surface-elevated: $soft-gray-light;
+
+$text-primary: $pure-black;
+$text-secondary: $charcoal;
+$text-muted: $mid-gray;
+$text-inverse: #FFFFFF;
+
+$border-light: $soft-gray;
+$border-medium: $soft-gray-dark;
+$border-dark: $charcoal;
+
+// State colors
+$success: $success-green;
+$warning: $warning-amber;
+$error: $error-red;
+$info: $data-blue;
+
+// Gradient variables
+$gradient-primary: linear-gradient(135deg, $rose-pink-light, $rose-pink);
+$gradient-hero: linear-gradient(135deg, $rose-pink-muted, $soft-gray-light);
+$gradient-data: linear-gradient(45deg, $data-blue, $insight-purple);
+$gradient-soft: linear-gradient(180deg, $warm-gray, $soft-gray);
+
+// Shadow variables
+$shadow-sm: 0 1px 2px 0 color.adjust($pure-black, $alpha: -0.95);
+$shadow-md: 0 4px 6px -1px color.adjust($pure-black, $alpha: -0.9), 0 2px 4px -1px color.adjust($pure-black, $alpha: -0.94);
+$shadow-lg: 0 10px 15px -3px color.adjust($pure-black, $alpha: -0.9), 0 4px 6px -2px color.adjust($pure-black, $alpha: -0.95);
+$shadow-xl: 0 20px 25px -5px color.adjust($pure-black, $alpha: -0.9), 0 10px 10px -5px color.adjust($pure-black, $alpha: -0.96);
+$shadow-pink: 0 8px 25px -8px color.adjust($rose-pink, $alpha: -0.7);
+
+// Color utility classes
+.bg-primary { background-color: $primary; }
+.bg-primary-light { background-color: $primary-light; }
+.bg-primary-dark { background-color: $primary-dark; }
+.bg-secondary { background-color: $secondary; }
+.bg-accent { background-color: $accent; }
+.bg-surface { background-color: $surface; }
+.bg-background { background-color: $background; }
+.bg-soft-gray { background-color: $soft-gray; }
+
+.text-primary { color: $text-primary; }
+.text-secondary { color: $text-secondary; }
+.text-muted { color: $text-muted; }
+.text-inverse { color: $text-inverse; }
+.text-rose { color: $rose-pink; }
+.text-data { color: $data-blue; }
+
+.border-light { border-color: $border-light; }
+.border-medium { border-color: $border-medium; }
+.border-primary { border-color: $primary; }
+
+// Theme-specific component classes
+.card-romantic {
+  background: $surface;
+  border: 1px solid $border-light;
+  box-shadow: $shadow-pink;
+  border-radius: 12px;
+  
+  &:hover {
+    box-shadow: $shadow-lg;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+  }
+}
+
+.btn-primary {
+  background: $gradient-primary;
+  color: $text-inverse;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: linear-gradient(135deg, $rose-pink, $rose-pink-dark);
+    box-shadow: $shadow-pink;
+    transform: translateY(-1px);
+  }
+}
+
+.btn-secondary {
+  background: transparent;
+  color: $primary;
+  border: 2px solid $primary;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: $primary;
+    color: $text-inverse;
+    box-shadow: $shadow-md;
+  }
+}
+
+.btn-data {
+  background: $gradient-data;
+  color: $text-inverse;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+// Data visualization color palette
+$chart-colors: (
+  primary: $rose-pink,
+  secondary: $data-blue,
+  tertiary: $insight-purple,
+  quaternary: $success-green,
+  quinary: $warning-amber,
+  senary: $rose-pink-light,
+  septenary: #FF6B9D,
+  octonary: #4ECDC4
+);
+
+// Status indicator colors
+.status-success { color: $success; }
+.status-warning { color: $warning; }
+.status-error { color: $error; }
+.status-info { color: $info; }
+
+.bg-success { background-color: color.adjust($success, $lightness: 45%); }
+.bg-warning { background-color: color.adjust($warning, $lightness: 45%); }
+.bg-error { background-color: color.adjust($error, $lightness: 45%); }
+.bg-info { background-color: color.adjust($info, $lightness: 45%); }
+
+// Hero section specific
+.hero-gradient {
+  background: $gradient-hero;
+}
+
+.hero-text {
+  color: $text-primary;
+  text-shadow: 0 1px 2px color.adjust($pure-black, $alpha: -0.9);
+}
+
+// Data science themed sections
+.data-section {
+  background: linear-gradient(135deg, color.adjust($data-blue, $alpha: -0.95), color.adjust($insight-purple, $alpha: -0.95));
+  border-left: 4px solid $data-blue;
+}
+
+.skills-grid {
+  .skill-item {
+    background: $surface;
+    border: 1px solid $border-light;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      border-color: $primary;
+      box-shadow: $shadow-pink;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Portfolio project cards
+.project-card {
+  background: $surface;
+  border-radius: 12px;
+  box-shadow: $shadow-md;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: $shadow-xl;
+    transform: translateY(-4px);
+    
+    .project-overlay {
+      opacity: 1;
+    }
+  }
+  
+  .project-overlay {
+    background: linear-gradient(135deg, color.adjust($rose-pink, $alpha: -0.1), color.adjust($data-blue, $alpha: -0.2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+}
