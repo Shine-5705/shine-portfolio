@@ -1,0 +1,19 @@
+@use './font';
+
+.welcome {
+    display: flex;
+    max-width: 1120px;
+    padding: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+
+    h1 {
+        @include font.heading-large;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+}

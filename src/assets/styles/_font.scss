@@ -1,0 +1,203 @@
+$font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-heading: "Bebas Neue", sans-serif;
+$font-mono: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$font-size-xs: 0.75rem; 
+$font-size-sm: 0.875rem; 
+$font-size-base: 1rem;    
+$font-size-lg: 1.125rem; 
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 1.875rem;  
+$font-size-4xl: 2.25rem;
+$font-size-5xl: 3rem;     
+$font-size-6xl: 3.75rem;   
+
+$line-height-tight: 1.25;
+$line-height-snug: 1.375;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+
+.bebas-neue-regular {
+  font-family: $font-heading;
+  font-weight: $font-weight-regular;
+  font-style: normal;
+}
+
+.font-primary {
+  font-family: $font-primary;
+}
+
+.font-heading {
+  font-family: $font-heading;
+}
+
+.font-mono {
+  font-family: $font-mono;
+}
+
+.font-light {
+  font-weight: $font-weight-light;
+}
+
+.font-regular {
+  font-weight: $font-weight-regular;
+}
+
+.font-medium {
+  font-weight: $font-weight-medium;
+}
+
+.font-semibold {
+  font-weight: $font-weight-semibold;
+}
+
+.font-bold {
+  font-weight: $font-weight-bold;
+}
+
+.text-xs {
+  font-size: $font-size-xs;
+}
+
+.text-sm {
+  font-size: $font-size-sm;
+}
+
+.text-base {
+  font-size: $font-size-base;
+}
+
+.text-lg {
+  font-size: $font-size-lg;
+}
+
+.text-xl {
+  font-size: $font-size-xl;
+}
+
+.text-2xl {
+  font-size: $font-size-2xl;
+}
+
+.text-3xl {
+  font-size: $font-size-3xl;
+}
+
+.text-4xl {
+  font-size: $font-size-4xl;
+}
+
+.text-5xl {
+  font-size: $font-size-5xl;
+}
+
+.text-6xl {
+  font-size: $font-size-6xl;
+}
+
+.leading-tight {
+  line-height: $line-height-tight;
+}
+
+.leading-snug {
+  line-height: $line-height-snug;
+}
+
+.leading-normal {
+  line-height: $line-height-normal;
+}
+
+.leading-relaxed {
+  line-height: $line-height-relaxed;
+}
+
+.leading-loose {
+  line-height: $line-height-loose;
+}
+
+@mixin heading-large {
+  font-family: $font-heading;
+  font-size: $font-size-5xl;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-tight;
+  letter-spacing: 0.02em;
+}
+
+@mixin heading-medium {
+  font-family: $font-heading;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-snug;
+  letter-spacing: 0.01em;
+}
+
+@mixin heading-small {
+  font-family: $font-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-normal;
+}
+
+@mixin body-large {
+  font-family: $font-primary;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-relaxed;
+}
+
+@mixin body-regular {
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-normal;
+}
+
+@mixin body-small {
+  font-family: $font-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-normal;
+}
+
+@mixin code {
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-normal;
+}
+
+.hero-title {
+  @include heading-large;
+  
+  @media (max-width: 768px) {
+    font-size: $font-size-4xl;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: $font-size-3xl;
+  }
+}
+
+.section-title {
+  @include heading-medium;
+  
+  @media (max-width: 768px) {
+    font-size: $font-size-2xl;
+  }
+}
+
+.card-title {
+  @include heading-small;
+  
+  @media (max-width: 768px) {
+    font-size: $font-size-xl;
+  }
+}

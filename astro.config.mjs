@@ -13,5 +13,13 @@ export default defineConfig({
       service: imageService(),
   },
 
-  integrations: [sitemap(), robotsTxt()]
+  integrations: [sitemap(), robotsTxt()],
+  build: {
+    inlineStylesheets: 'never',
+  },
+  vite: {
+    build: {
+      cssCodeSplit: false,
+    }
+  }
 });
