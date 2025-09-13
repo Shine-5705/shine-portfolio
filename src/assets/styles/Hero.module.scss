@@ -311,13 +311,13 @@
         }
       }
 
-      // Adjusted card positions to prevent overlap
-      .card1 { top: 10%; right: 8%; }
-      .card2 { top: 15%; left: 8%; }
-      .card3 { bottom: 30%; right: 10%; }
-      .card4 { bottom: 15%; left: 10%; }
-      .card5 { top: 40%; right: 12%; }
-      .card6 { top: 50%; left: 12%; }
+      // Adjusted card positions to avoid overlap with central text and image
+      .card1 { top: 10%; right: 15%; } // "Data Scientist"
+      .card2 { top: 10%; left: 12%; }  // "Education"
+      .card3 { bottom: 20%; right: 15%; } // "Data Scientist"
+      .card4 { bottom: 20%; left: 10%; }  // "Achievements"
+      .card5 { top: 38%; right: 13%; }  // "Current Focus"
+      .card6 { top: 40%; left: 15%; }   // "Tech Stack"
     }
 
     .heroText {
@@ -328,12 +328,12 @@
       text-align: center;
       z-index: 4;
       width: 100%;
-      max-width: 1000px; // Reduced for better balance
+      max-width: 800px; // Reduced to avoid crowding cards
 
       .heroName,
       .heroLastName {
         font-family: font.$font-heading;
-        font-size: clamp(100px, 10vw, 200px); // Slightly smaller for better spacing
+        font-size: clamp(100px, 10vw, 180px); // Adjusted for better balance
         font-weight: font.$font-weight-regular;
         margin: 0;
         line-height: font.$line-height-tight;
@@ -345,7 +345,7 @@
       .heroName { margin-bottom: -10px; }
 
       .heroSubtitle {
-        margin-top: 30px;
+        margin-top: 20px; // Reduced to give more space to cards
         display: flex;
         flex-direction: column;
         gap: 8px;
@@ -373,25 +373,25 @@
 
     .heroBottom {
       position: absolute;
-      bottom: 60px; // Raised slightly to avoid overlap with cards
+      bottom: 40px; // Moved up to avoid overlap with cards
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 32px;
-      z-index: 4;
+      gap: 24px; // Reduced gap for compactness
+      z-index: 6;
 
       .ctaButtons {
         display: flex;
-        gap: 20px;
+        gap: 16px; // Reduced gap between buttons
         align-items: center;
 
         .primaryBtn {
           background: colour.$gradient-primary;
           color: colour.$text-inverse;
           border: none;
-          padding: 14px 28px;
+          padding: 12px 24px; // Reduced padding
           border-radius: 50px;
           @include font.body-regular;
           font-weight: font.$font-weight-semibold;
@@ -411,7 +411,7 @@
           background: transparent;
           color: colour.$rose-pink;
           border: 2px solid colour.$rose-pink;
-          padding: 12px 26px;
+          padding: 10px 22px; // Reduced padding
           border-radius: 50px;
           @include font.body-regular;
           font-weight: font.$font-weight-semibold;
@@ -432,7 +432,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 12px;
+        gap: 10px; // Reduced gap
 
         .scrollLine {
           width: 2px;
@@ -470,18 +470,15 @@
 @media (max-width: 1200px) {
   .heroContainer .heroContent {
     .floatingElements {
-      .card1 { top: 8%; right: 6%; }
-      .card2 { top: 12%; left: 6%; }
-      .card3 { bottom: 28%; right: 8%; }
-      .card4 { bottom: 12%; left: 8%; }
-      .card5 { top: 38%; right: 8%; }
-      .card6 { top: 48%; left: 10%; }
+      .card1 { top: 8%; right: 12%; }
+      .card2 { top: 8%; left: 12%; }
+      .card3 { bottom: 20%; right: 12%; }
+      .card4 { bottom: 20%; left: 12%; }
+      .card5 { top: 45%; right: 8%; }
+      .card6 { top: 45%; left: 8%; }
     }
 
-    .heroText {
-      max-width: 800px;
-      .heroName, .heroLastName { font-size: clamp(80px, 9vw, 160px); }
-    }
+    .heroText { max-width: 700px; }
   }
 }
 
@@ -501,26 +498,21 @@
         min-width: 160px;
         max-width: 220px;
       }
-      .card1 { top: 6%; right: 4%; }
-      .card2 { top: 10%; left: 4%; }
-      .card3 { bottom: 30%; right: 5%; }
-      .card4 { bottom: 10%; left: 5%; }
-      .card5 { top: 35%; right: 3%; }
-      .card6 { top: 45%; left: 6%; }
+      .card1 { top: 6%; right: 5%; }
+      .card2 { top: 6%; left: 5%; }
+      .card3 { bottom: 25%; right: 5%; }
+      .card4 { bottom: 25%; left: 5%; }
+      .card5 { top: 40%; right: 3%; }
+      .card6 { top: 40%; left: 3%; }
     }
 
     .heroText {
-      .heroName, .heroLastName { font-size: clamp(60px, 12vw, 120px); }
-      .heroSubtitle {
-        margin-top: 20px;
-        padding: 0 16px;
-        .subtitle { font-size: font.$font-size-base; }
-        .subtitleHighlight { font-size: clamp(14px, 3.5vw, 20px); letter-spacing: 2px; }
-      }
+      .heroName, .heroLastName { font-size: clamp(60px, 22vw, 120px); }
+      .heroSubtitle { margin-top: 15px; }
     }
 
     .heroBottom {
-      bottom: 40px;
+      bottom: 30px;
       .ctaButtons {
         flex-direction: column;
         gap: 12px;
@@ -533,24 +525,33 @@
 @media (max-width: 480px) {
   .heroContainer .heroContent {
     .floatingElements {
-      .floatingCard { transform: scale(0.8); padding: 12px; min-width: 140px; max-width: 180px; }
+      .floatingCard {
+        transform: scale(0.8);
+        padding: 12px;
+        min-width: 140px;
+        max-width: 180px;
+      }
       .cardSkills { grid-template-columns: repeat(2, 1fr); }
-      .card3, .card5, .card6 { display: none; } // Hide cards to reduce clutter
+      .card3, .card5, .card6 { display: none; } // Hide extra cards
       .card1 { top: 5%; right: 2%; }
-      .card2 { top: 8%; left: 2%; }
-      .card4 { bottom: 8%; left: 3%; }
+      .card2 { top: 5%; left: 2%; }
+      .card4 { bottom: 23%; left: 2%; }
     }
 
     .heroText {
       max-width: 100%;
-      padding: 0 12px;
-      .heroName, .heroLastName { font-size: clamp(40px, 10vw, 80px); }
-      .heroSubtitle .subtitleHighlight { font-size: clamp(12px, 3vw, 16px); letter-spacing: 1.5px; }
+      padding: 0 10px;
+      .heroName, .heroLastName { font-size: clamp(40px, 20vw, 80px); }
+      .heroSubtitle .subtitleHighlight { font-size: clamp(12px, 3vw, 16px); }
     }
 
     .heroBottom {
-      bottom: 30px;
-      .ctaButtons .primaryBtn, .ctaButtons .secondaryBtn { width: 160px; padding: 10px 20px; font-size: font.$font-size-xs; }
+      bottom: 20px;
+      .ctaButtons {
+        flex-direction: column;
+        gap: 10px;
+        .primaryBtn, .secondaryBtn { width: 140px; padding: 8px 16px; font-size: font.$font-size-xs; }
+      }
     }
   }
 }
