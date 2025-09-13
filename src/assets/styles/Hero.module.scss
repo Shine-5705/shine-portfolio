@@ -342,7 +342,17 @@
         letter-spacing: 0.02em;
       }
 
-      .heroName { margin-bottom: -10px; }
+      .heroName { 
+        margin-bottom: -10px;
+        display: flex;
+        position: relative;
+        left: 10%;
+     }
+        .heroLastName { 
+            display: flex;
+            position: relative;
+            right: -40%;
+        }
 
       .heroSubtitle {
         margin-top: 20px; // Reduced to give more space to cards
