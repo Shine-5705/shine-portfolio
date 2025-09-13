@@ -3,15 +3,16 @@ import style from '../../assets/styles/About.module.scss';
 import { Image } from 'astro:assets';
 import profileImage from '../../assets/images/profile-image.jpg';
 import atomImg from '../../assets/images/atom.png';
+import { Target } from '@lucide/astro';
 ---
 
 <section class={style.aboutContainer + ' about-container'}>
     <div class={style.floatingImages}>
-        <Image src={atomImg} alt="atom image" class={style.floatingImg + ' ' + style.img1} />
-        <Image src={atomImg} alt="atom image" class={style.floatingImg + ' ' + style.img2} />
-        <Image src={atomImg} alt="atom image" class={style.floatingImg + ' ' + style.img3} />
-        <Image src={atomImg} alt="atom image" class={style.floatingImg + ' ' + style.img4} />
-        <Image src={atomImg} alt="atom image" class={style.floatingImg + ' ' + style.img5} />
+        <Image src={atomImg} alt="atom" class={style.floatingImg + ' ' + style.img1} />
+        <Image src={atomImg} alt="atom" class={style.floatingImg + ' ' + style.img2} />
+        <Image src={atomImg} alt="atom" class={style.floatingImg + ' ' + style.img3} />
+        <Image src={atomImg} alt="atom" class={style.floatingImg + ' ' + style.img4} />
+        <Image src={atomImg} alt="atom" class={style.floatingImg + ' ' + style.img5} />
     </div>
 
     <div class={style.aboutContent + ' about-content'}>
@@ -92,7 +93,7 @@ import atomImg from '../../assets/images/atom.png';
 
             <div class={style.contentSection + ' content-section'}>
                 <div class={style.storyCard + ' story-card'}>
-                    <div class={style.cardIcon}>🎯</div>
+                    <div class={style.cardIcon}><Target /></div>
                     <h3 class={style.cardTitle + ' card-title'}>My Journey</h3>
                     <p class={style.cardText + ' card-text'}>
                         From a curious mathematics student to a leading data scientist, my journey has been driven by an insatiable appetite for uncovering patterns in chaos. I believe data tells stories that can change the world.
