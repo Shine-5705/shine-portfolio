@@ -16,6 +16,9 @@ export default defineConfig({
   vite: {
     build: {
       cssCodeSplit: false,
+    },
+    ssr: {
+      noExternal: ['gsap']
     }
   }
 });
