@@ -9,6 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.13.7"
+    "@astrojs/sitemap": "^3.5.1",
+    "@unpic/astro": "^1.0.1",
+    "astro": "^5.13.7",
+    "astro-robots-txt": "^1.0.0",
+    "astro-seo": "^0.8.4"
+  },
+  "devDependencies": {
+    "sass": "^1.92.1"
   }
 }
