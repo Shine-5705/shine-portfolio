@@ -542,10 +542,9 @@
         max-width: 180px;
       }
       .cardSkills { grid-template-columns: repeat(2, 1fr); }
-      .card3, .card5, .card6 { display: none; } // Hide extra cards
+      .card3, .card5, .card6, .card4 { display: none; } 
       .card1 { top: 5%; right: 2%; }
       .card2 { top: 5%; left: 2%; }
-      .card4 { bottom: 23%; left: 2%; }
     }
 
     .heroText {
