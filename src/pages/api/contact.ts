@@ -12,7 +12,7 @@ if (!RESEND_API_KEY) {
 
 const resend = new Resend(RESEND_API_KEY);
 
-const YOUR_EMAIL = 'sinhaparth555@gmail.com';
+const YOUR_EMAIL = 'gutpashine5002@gmail.com';
 
 function validateCSRFToken(token: string, sessionId: string): boolean {
   try {
@@ -174,14 +174,14 @@ const createEmailTemplate = (data: {
           
           <div class="timestamp">
             📅 Received: ${new Date().toLocaleString('en-US', {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit',
-              timeZoneName: 'short'
-            })}
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZoneName: 'short'
+  })}
           </div>
         </div>
         
@@ -197,7 +197,7 @@ const createEmailTemplate = (data: {
 export const POST: APIRoute = async ({ request }) => {
   try {
     const formData = await request.formData();
-    
+
     const firstName = formData.get('firstName') as string;
     const lastName = formData.get('lastName') as string;
     const email = formData.get('email') as string;
@@ -280,19 +280,19 @@ export const POST: APIRoute = async ({ request }) => {
       throw new Error('Failed to send email');
     }
 
-    return new Response(JSON.stringify({ 
-      success: true, 
+    return new Response(JSON.stringify({
+      success: true,
       message: 'Email sent successfully',
-      messageId: emailResult.data?.id 
+      messageId: emailResult.data?.id
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
 
   } catch (error) {
-    return new Response(JSON.stringify({ 
-      success: false, 
-      error: 'Server error - please try again later' 
+    return new Response(JSON.stringify({
+      success: false,
+      error: 'Server error - please try again later'
     }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
@@ -304,22 +304,22 @@ export const GET: APIRoute = async ({ request }) => {
   try {
     const sessionId = crypto.randomUUID();
     const csrfToken = generateCSRFToken(sessionId);
-    
-    return new Response(JSON.stringify({ 
-      csrfToken, 
+
+    return new Response(JSON.stringify({
+      csrfToken,
       sessionId,
       timestamp: Date.now()
     }), {
       status: 200,
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache, no-store, must-revalidate'
       }
     });
   } catch (error) {
     console.error('CSRF token generation error:', error);
-    return new Response(JSON.stringify({ 
-      error: 'Failed to generate security token' 
+    return new Response(JSON.stringify({
+      error: 'Failed to generate security token'
     }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
