@@ -1,0 +1,292 @@
+---
+import style from '../../assets/styles/Contact.module.scss';
+---
+
+<section class={`${style.contactContainer} contact-container`}>
+  <div class={style.floatingStars}>
+    <div class={`${style.star} ${style.star1} floating-star-1`}></div>
+    <div class={`${style.star} ${style.star2} floating-star-2`}></div>
+    <div class={`${style.star} ${style.star3} floating-star-3`}></div>
+    <div class={`${style.star} ${style.star4} floating-star-4`}></div>
+    <div class={`${style.star} ${style.star5} floating-star-5`}></div>
+    <div class={`${style.star} ${style.star1} floating-star-6`}></div>
+    <div class={`${style.star} ${style.star2} floating-star-7`}></div>
+    <div class={`${style.star} ${style.star3} floating-star-8`}></div>
+    <div class={`${style.star} ${style.star4} floating-star-9`}></div>
+    <div class={`${style.star} ${style.star5} floating-star-10`}></div>
+  </div>
+
+  <div class={style.contactContent}>
+    <div class={style.sectionHeader}>
+      <span class={`${style.sectionTag} section-tag`}>Get In Touch</span>
+      <h2 class={`${style.sectionTitle} section-title`}>Let's Connect</h2>
+      <p class={`${style.sectionSubtitle} section-subtitle`}>
+        Have a project in mind or want to collaborate? I'd love to hear from you. 
+        Drop me a message and let's create something amazing together.
+      </p>
+    </div>
+
+    <form class={`${style.contactForm} contact-form`} id="contactForm">
+      <div style="position: absolute; left: -9999px; visibility: hidden;">
+        <label for="website">Website (leave blank)</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+      
+      <input type="hidden" id="csrfToken" name="csrfToken" />
+      <input type="hidden" id="sessionId" name="sessionId" />
+
+      <div class={style.formGrid}>
+        <div class={style.formGroup}>
+          <label for="firstName">First Name</label>
+          <input 
+            type="text" 
+            id="firstName" 
+            name="firstName" 
+            placeholder="John" 
+            required 
+          />
+          <div class={style.error} id="firstNameError"></div>
+        </div>
+
+        <div class={style.formGroup}>
+          <label for="lastName">Last Name</label>
+          <input 
+            type="text" 
+            id="lastName" 
+            name="lastName" 
+            placeholder="Doe" 
+            required 
+          />
+          <div class={style.error} id="lastNameError"></div>
+        </div>
+
+        <div class={style.formGroup}>
+          <label for="email">Email Address</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="john@example.com" 
+            required 
+          />
+          <div class={style.error} id="emailError"></div>
+        </div>
+
+        <div class={style.formGroup}>
+          <label for="company">Company (Optional)</label>
+          <input 
+            type="text" 
+            id="company" 
+            name="company" 
+            placeholder="Acme Inc." 
+          />
+        </div>
+
+        <div class={`${style.formGroup} ${style.fullWidth}`}>
+          <label for="subject">Subject</label>
+          <input 
+            type="text" 
+            id="subject" 
+            name="subject" 
+            placeholder="Let's discuss a project" 
+            required 
+          />
+          <div class={style.error} id="subjectError"></div>
+        </div>
+
+        <div class={`${style.formGroup} ${style.fullWidth}`}>
+          <label for="message">Message</label>
+          <textarea 
+            id="message" 
+            name="message" 
+            placeholder="Tell me about your project, ideas, or just say hello..."
+            required
+          ></textarea>
+          <div class={style.error} id="messageError"></div>
+        </div>
+      </div>
+
+      <button type="submit" class={style.submitButton} id="submitBtn">
+        <span class={style.buttonText} id="buttonText">
+          Send Message
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </span>
+        <div class={style.loadingSpinner} id="loadingSpinner" style="display: none;"></div>
+      </button>
+    </form>
+
+    <div class={style.successMessage} id="successMessage" style="display: none;">
+      <div class={style.successIcon}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20,6 9,17 4,12"/>
+        </svg>
+      </div>
+      <h3>Message Sent Successfully!</h3>
+      <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const tokenResponse = await fetch('/api/contact');
+      const tokenData = await tokenResponse.json();
+      
+      const csrfTokenInput = document.getElementById('csrfToken') as HTMLInputElement;
+      const sessionIdInput = document.getElementById('sessionId') as HTMLInputElement;
+      
+      if (csrfTokenInput && sessionIdInput) {
+        csrfTokenInput.value = tokenData.csrfToken;
+        sessionIdInput.value = tokenData.sessionId;
+      }
+    } catch (error) {
+      console.error('Failed to fetch CSRF token:', error);
+    }
+
+    const stars = document.querySelectorAll('.floating-star-1, .floating-star-2, .floating-star-3, .floating-star-4, .floating-star-5, .floating-star-6, .floating-star-7, .floating-star-8, .floating-star-9, .floating-star-10');
+    
+    stars.forEach((star, index) => {
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const padding = 50;
+      
+      const initialX = padding + Math.random() * (viewportWidth - padding * 2);
+      const initialY = padding + Math.random() * (viewportHeight - padding * 2);
+      
+      gsap.set(star, {
+        x: initialX,
+        y: initialY,
+        scale: 0.5 + Math.random() * 0.8,
+        opacity: 0.3 + Math.random() * 0.6
+      });
+      
+      gsap.to(star, {
+        x: `+=${(Math.random() - 0.5) * 200}`,
+        y: `+=${(Math.random() - 0.5) * 150}`,
+        rotation: Math.random() * 360,
+        duration: 15 + Math.random() * 10,
+        ease: "none",
+        repeat: -1,
+        yoyo: true,
+        delay: index * 0.5
+      });
+      
+      gsap.to(star, {
+        opacity: `+=${0.3 + Math.random() * 0.4}`,
+        duration: 2 + Math.random() * 3,
+        ease: "power2.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: index * 0.3
+      });
+    });
+
+    const form = document.getElementById('contactForm') as HTMLFormElement;
+    const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+    const buttonText = document.getElementById('buttonText') as HTMLElement;
+    const loadingSpinner = document.getElementById('loadingSpinner') as HTMLElement;
+    const successMessage = document.getElementById('successMessage') as HTMLElement;
+
+    function validateField(field: HTMLInputElement | HTMLTextAreaElement, errorElementId: string): boolean {
+      const errorElement = document.getElementById(errorElementId) as HTMLElement;
+      
+      if (!field.value.trim()) {
+        errorElement.textContent = 'This field is required';
+        return false;
+      }
+      
+      if (field.type === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(field.value)) {
+          errorElement.textContent = 'Please enter a valid email address';
+          return false;
+        }
+      }
+      
+      errorElement.textContent = '';
+      return true;
+    }
+
+    const inputs = form.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+      input.addEventListener('input', () => {
+        const errorElementId = (input as HTMLInputElement).id + 'Error';
+        const errorElement = document.getElementById(errorElementId);
+        if (errorElement) {
+          errorElement.textContent = '';
+        }
+      });
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const firstName = document.getElementById('firstName') as HTMLInputElement;
+      const lastName = document.getElementById('lastName') as HTMLInputElement;
+      const email = document.getElementById('email') as HTMLInputElement;
+      const subject = document.getElementById('subject') as HTMLInputElement;
+      const message = document.getElementById('message') as HTMLTextAreaElement;
+      
+      const isValid = [
+        validateField(firstName, 'firstNameError'),
+        validateField(lastName, 'lastNameError'),
+        validateField(email, 'emailError'),
+        validateField(subject, 'subjectError'),
+        validateField(message, 'messageError')
+      ].every(Boolean);
+      
+      if (!isValid) return;
+      
+      submitBtn.disabled = true;
+      buttonText.style.display = 'none';
+      loadingSpinner.style.display = 'block';
+      
+      try {
+        const formData = new FormData(form);
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          body: formData
+        });
+        
+        if (response.ok) {
+          form.style.display = 'none';
+          successMessage.style.display = 'block';
+          
+          gsap.fromTo(successMessage, 
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+          );
+        } else {
+          throw new Error('Failed to send message');
+        }
+      } catch (error) {
+        console.error('Error sending message:', error);
+        alert('Sorry, there was an error sending your message. Please try again.');
+      } finally {
+        submitBtn.disabled = false;
+        buttonText.style.display = 'flex';
+        loadingSpinner.style.display = 'none';
+      }
+    });
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '.contact-container',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+      }
+    })
+    .fromTo('.section-tag', { y: 30, opacity: 0 }, { duration: 0.8, y: 0, opacity: 1, ease: 'power3.out' })
+    .fromTo('.section-title', { y: 50, opacity: 0 }, { duration: 1, y: 0, opacity: 1, ease: 'power3.out' }, '-=0.6')
+    .fromTo('.section-subtitle', { y: 30, opacity: 0 }, { duration: 0.8, y: 0, opacity: 1, ease: 'power3.out' }, '-=0.4')
+    .fromTo('.contact-form', { y: 60, opacity: 0 }, { duration: 1, y: 0, opacity: 1, ease: 'power3.out' }, '-=0.3');
+  });
+</script>
