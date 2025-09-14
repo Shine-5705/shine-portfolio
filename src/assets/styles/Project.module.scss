@@ -19,6 +19,62 @@
         z-index: 0;
     }
 
+    .floatingElements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+
+        .floatingIcon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            opacity: 0.15;
+            color: colour.$rose-pink;
+            filter: blur(0.5px);
+            
+            svg {
+                width: 100%;
+                height: 100%;
+                fill: currentColor;
+            }
+
+            &.floating-icon-1 {
+                color: rgba(215, 171, 197, 0.8);
+                width: 35px;
+                height: 35px;
+            }
+            
+            &.floating-icon-2 {
+                color: rgba(99, 102, 241, 0.7);
+                width: 45px;
+                height: 45px;
+            }
+            
+            &.floating-icon-3 {
+                color: rgba(34, 197, 94, 0.6);
+                width: 38px;
+                height: 38px;
+            }
+            
+            &.floating-icon-4 {
+                color: rgba(251, 191, 36, 0.7);
+                width: 32px;
+                height: 32px;
+            }
+            
+            &.floating-icon-5 {
+                color: rgba(239, 68, 68, 0.6);
+                width: 42px;
+                height: 42px;
+            }
+        }
+    }
+
     .projectsContent {
         max-width: 1400px;
         margin: 0 auto;
