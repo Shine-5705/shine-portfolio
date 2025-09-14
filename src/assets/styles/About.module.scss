@@ -250,9 +250,15 @@
                 margin-bottom: 20px;
             }
 
+            .cardHeader {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
             .cardTitle {
                 font-family: font.$font-heading;
-                font-size: font.$font-size-xl;
+                font-size: 2rem;
                 color: colour.$text-inverse;
                 margin: 0 0 20px 0;
             }
@@ -410,6 +416,7 @@
                         font-size: font.$font-size-xl;
                         color: colour.$text-inverse;
                         margin: 0 0 10px 0;
+                        letter-spacing: 0.10rem;
                     }
 
                     .timelineCompany {

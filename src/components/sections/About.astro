@@ -3,7 +3,7 @@ import style from '../../assets/styles/About.module.scss';
 import { Image } from 'astro:assets';
 import profileImage from '../../assets/images/profile-image.jpg';
 import atomImg from '../../assets/images/atom.png';
-import { Target } from '@lucide/astro';
+import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide/astro';
 ---
 
 <section class={style.aboutContainer + ' about-container'}>
@@ -93,24 +93,30 @@ import { Target } from '@lucide/astro';
 
             <div class={style.contentSection + ' content-section'}>
                 <div class={style.storyCard + ' story-card'}>
-                    <div class={style.cardIcon}><Target /></div>
+                  <div class={style.cardHeader}>
+                    <div class={style.cardIcon}><Target color="#D7ABC5" size={48} /></div>
                     <h3 class={style.cardTitle + ' card-title'}>My Journey</h3>
+                  </div>
                     <p class={style.cardText + ' card-text'}>
                         From a curious mathematics student to a leading data scientist, my journey has been driven by an insatiable appetite for uncovering patterns in chaos. I believe data tells stories that can change the world.
                     </p>
                 </div>
 
                 <div class={style.storyCard + ' story-card'}>
-                    <div class={style.cardIcon}>💡</div>
+                  <div class={style.cardHeader}>
+                    <div class={style.cardIcon}><Lightbulb color='#D7ABC5' size={48} /></div>
                     <h3 class={style.cardTitle + ' card-title'}>Philosophy</h3>
+                  </div>
                     <p class={style.cardText + ' card-text'}>
                         Every dataset holds secrets waiting to be discovered. I combine rigorous statistical methods with creative problem-solving to extract actionable insights that drive meaningful business outcomes.
                     </p>
                 </div>
 
                 <div class={style.storyCard + ' story-card'}>
-                    <div class={style.cardIcon}>🚀</div>
+                  <div class={style.cardHeader}>
+                    <div class={style.cardIcon}><Rocket color='#D7ABC5' size={48} /></div>
                     <h3 class={style.cardTitle + ' card-title'}>Impact</h3>
+                  </div>
                     <p class={style.cardText + ' card-text'}>
                         My work has helped organizations increase efficiency by 40%, reduce costs by $2M+, and make data-driven decisions that transformed entire business strategies. I don't just analyze data—I create value.
                     </p>
@@ -120,7 +126,7 @@ import { Target } from '@lucide/astro';
                     <h3 class={style.infoTitle + ' info-title'}>Beyond the Data</h3>
                     <div class={style.infoGrid + ' info-grid'}>
                         <div class={style.infoItem + ' info-item'}>
-                            <div class={style.infoIcon}>🎨</div>
+                            <div class={style.infoIcon}><Palette color='#D7ABC5' size={36} /></div>
                             <div class={style.infoContent}>
                                 <span class={style.infoLabel}>Creative Passion</span>
                                 <span class={style.infoValue}>Digital Art & Design</span>
@@ -128,7 +134,7 @@ import { Target } from '@lucide/astro';
                         </div>
                         
                         <div class={style.infoItem + ' info-item'}>
-                            <div class={style.infoIcon}>📚</div>
+                            <div class={style.infoIcon}><Book color="#D7ABC5" size={36} /></div>
                             <div class={style.infoContent}>
                                 <span class={style.infoLabel}>Learning</span>
                                 <span class={style.infoValue}>Quantum Computing</span>
@@ -136,7 +142,7 @@ import { Target } from '@lucide/astro';
                         </div>
                         
                         <div class={style.infoItem + ' info-item'}>
-                            <div class={style.infoIcon}>🌍</div>
+                            <div class={style.infoIcon}><Earth color="#D7ABC5" size={36} /></div>
                             <div class={style.infoContent}>
                                 <span class={style.infoLabel}>Impact Goal</span>
                                 <span class={style.infoValue}>AI for Social Good</span>
@@ -144,7 +150,7 @@ import { Target } from '@lucide/astro';
                         </div>
                         
                         <div class={style.infoItem + ' info-item'}>
-                            <div class={style.infoIcon}>☕</div>
+                            <div class={style.infoIcon}><Coffee color="#D7ABC5" size={36}/></div>
                             <div class={style.infoContent}>
                                 <span class={style.infoLabel}>Fuel</span>
                                 <span class={style.infoValue}>Coffee & Curiosity</span>
