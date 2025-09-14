@@ -12,7 +12,7 @@ if (!RESEND_API_KEY) {
 
 const resend = new Resend(RESEND_API_KEY);
 
-const YOUR_EMAIL = 'gutpashine5002@gmail.com';
+const YOUR_EMAIL = 'guptashine5002@gmail.com';
 
 function validateCSRFToken(token: string, sessionId: string): boolean {
   try {
