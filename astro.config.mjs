@@ -17,10 +17,6 @@ export default defineConfig({
     inlineStylesheets: 'never',
   },
   vite: {
-    define: {
-      'process.env.RESEND_API_KEY': JSON.stringify(process.env.RESEND_API_KEY),
-      'process.env.CSRF_SECRET': JSON.stringify(process.env.CSRF_SECRET),
-    },
     build: {
       cssCodeSplit: false,
     },
