@@ -11,7 +11,6 @@ if (typeof window !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
     const tl = gsap.timeline({ defaults: { overwrite: 'auto' } });
 
-    // Initial animations for hero elements
     tl.from('.hero-name', { 
       duration: 1.2, 
       y: 100, 
@@ -46,7 +45,6 @@ if (typeof window !== 'undefined') {
       ease: 'power2.out' 
     }, '-=0.4');
 
-    // Floating animations for cards
     const floatAnimations = [
       { target: '.card-1', y: -20, duration: 3, delay: 0 },
       { target: '.card-2', y: -15, duration: 4, delay: 0.5 },
@@ -67,16 +65,15 @@ if (typeof window !== 'undefined') {
       });
     });
 
-    // Parallax effect for hero image
     gsap.to('.hero-image', {
       yPercent: -30,
       ease: 'none',
       scrollTrigger: {
-        trigger: `.${style.heroContainer}`, // Use the scoped heroContainer class
+        trigger: `.${style.heroContainer}`,
         start: 'top bottom',
         end: 'bottom top',
-        scrub: 1, // Smooth scrubbing
-        invalidateOnRefresh: true // Recalculate on resize
+        scrub: 1,
+        invalidateOnRefresh: true
       }
     });
   });

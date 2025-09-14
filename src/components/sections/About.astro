@@ -196,10 +196,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Set initial opacity to 1 for all elements to prevent flash
   gsap.set(['.section-tag', '.section-title', '.title-underline', '.image-container', '.floating-stats .stat-1', '.floating-stats .stat-2', '.floating-stats .stat-3', '.skills-title', '.skill-bar', '.story-card', '.info-title', '.info-item', '.timeline-title', '.timeline-item'], { opacity: 1 });
 
-  // Section header animation
   gsap.timeline({
     scrollTrigger: {
       trigger: '.about-container',
@@ -212,7 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
   .fromTo('.section-title', { y: 50, opacity: 0 }, { duration: 1, y: 0, opacity: 1, ease: 'power3.out' }, '-=0.6')
   .fromTo('.title-underline', { scaleX: 0, opacity: 0 }, { duration: 1, scaleX: 1, opacity: 1, ease: 'power3.out' }, '-=0.4');
 
-  // Profile section animations
   gsap.timeline({
     scrollTrigger: {
       trigger: '.profile-section',
@@ -226,7 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
   .fromTo('.floating-stats .stat-2', { y: -50, opacity: 0 }, { duration: 1, y: 0, opacity: 1, ease: 'power3.out' }, '-=0.6')
   .fromTo('.floating-stats .stat-3', { x: 50, opacity: 0 }, { duration: 1, x: 0, opacity: 1, ease: 'power3.out' }, '-=0.4');
 
-  // Skills animation with progress bars
   gsap.timeline({
     scrollTrigger: {
       trigger: '.skills-overview',
@@ -238,7 +234,6 @@ document.addEventListener('DOMContentLoaded', () => {
   .fromTo('.skills-title', { y: 30, opacity: 0 }, { duration: 0.8, y: 0, opacity: 1, ease: 'power3.out' })
   .fromTo('.skill-bar', { x: -30, opacity: 0 }, { duration: 0.6, x: 0, opacity: 1, stagger: 0.1, ease: 'power2.out' }, '-=0.4');
 
-  // Animate skill progress bars
   const skillFills = gsap.utils.toArray<HTMLElement>('.skill-fill-ml, .skill-fill-viz, .skill-fill-stats, .skill-fill-dl');
   skillFills.forEach((fill) => {
     const percent = fill.getAttribute('data-percent');
@@ -257,7 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   });
 
-  // Story cards cascade animation
   gsap.timeline({
     scrollTrigger: {
       trigger: '.content-section',
@@ -271,7 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
     { duration: 1, y: 0, rotation: 0, opacity: 1, stagger: 0.2, ease: 'back.out(1.2)' }
   );
 
-  // Personal info grid animation
   gsap.timeline({
     scrollTrigger: {
       trigger: '.personal-info',
@@ -287,7 +280,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '-=0.4'
   );
 
-  // Timeline animation
   gsap.timeline({
     scrollTrigger: {
       trigger: '.experience-timeline',
@@ -303,7 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '-=0.5'
   );
 
-  // Continuous floating animations for stats
   gsap.to('.stat-1', {
     y: -15,
     duration: 2.5,
@@ -330,7 +321,6 @@ document.addEventListener('DOMContentLoaded', () => {
     delay: 1
   });
 
-  // Parallax effect for profile image
   gsap.to('.profile-image', {
     yPercent: -20,
     ease: 'none',
@@ -342,7 +332,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Hover animations for story cards
   const storyCards = gsap.utils.toArray<HTMLElement>('.story-card');
   storyCards.forEach((card) => {
     const tl = gsap.timeline({ paused: true });
