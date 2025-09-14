@@ -262,7 +262,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const emailResult = await resend.emails.send({
-      from: 'Contact Form <onboarding@resend.dev>',
+      from: 'Contact Form <shine@astrareconslabs.com>',
       to: [YOUR_EMAIL],
       subject: `New Contact: ${subject}`,
       html: createEmailTemplate({
