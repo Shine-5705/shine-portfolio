@@ -1,7 +1,9 @@
 ---
 import style from '../../assets/styles/Project.module.scss';
 import { Image } from 'astro:assets';
+import atom from '../../assets/images/atom.png';
 
+// GitHub repositories to display
 const repositories = [
   {
     url: "https://github.com/sinhaparth5/shine-portfolio",
@@ -29,11 +31,13 @@ const repositories = [
   }
 ];
 
+// Function to extract owner and repo from GitHub URL
 function parseGitHubUrl(url: string) {
   const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
   return match ? { owner: match[1], repo: match[2] } : null;
 }
 
+// Fetch GitHub data for each repository
 async function fetchGitHubData() {
   const projects = [];
   
@@ -65,10 +69,30 @@ async function fetchGitHubData() {
   return projects;
 }
 
+// Fetch projects data
 const projects = await fetchGitHubData();
 ---
 
 <section class={`${style.projectsContainer} projects-container`}>
+  <!-- Floating background elements -->
+  <div class={style.floatingElements}>
+    <div class={`${style.floatingIcon} floating-icon-1`}>
+      <Image src={atom} alt="" />
+    </div>
+    <div class={`${style.floatingIcon} floating-icon-2`}>
+      <Image src={atom} alt="" />
+    </div>
+    <div class={`${style.floatingIcon} floating-icon-3`}>
+      <Image src={atom} alt="" />
+    </div>
+    <div class={`${style.floatingIcon} floating-icon-4`}>
+      <Image src={atom} alt="" />
+    </div>
+    <div class={`${style.floatingIcon} floating-icon-5`}>
+      <Image src={atom} alt="" />
+    </div>
+  </div>
+
   <div class={style.projectsContent}>
     <div class={style.sectionHeader}>
       <span class={`${style.sectionTag} section-tag`}>Featured Work</span>
@@ -82,6 +106,7 @@ const projects = await fetchGitHubData();
           <div class={`${style.projectCard} project-card`}>
             <div class={style.cardInner}>
               
+              <!-- Front of card -->
               <div class={`${style.cardFront} card-front`}>
                 <div class={style.projectImage}>
                   <Image 
@@ -89,7 +114,6 @@ const projects = await fetchGitHubData();
                     alt={project.title} 
                     width={350} 
                     height={315}
-                    layout="constrained"
                     format="webp"
                     quality={80}
                   />
@@ -108,6 +132,7 @@ const projects = await fetchGitHubData();
                 </div>
               </div>
 
+              <!-- Back of card -->
               <div class={`${style.cardBack} card-back`}>
                 <div class={style.projectDetails}>
                   <div class={style.projectHeader}>
@@ -161,6 +186,62 @@ const projects = await fetchGitHubData();
   document.addEventListener('DOMContentLoaded', () => {
     const marquee = document.querySelector('.projects-marquee');
     const cards = document.querySelectorAll('.project-card');
+    
+    // Floating elements animation
+    const floatingIcons = document.querySelectorAll('.floating-icon-1, .floating-icon-2, .floating-icon-3, .floating-icon-4, .floating-icon-5');
+    
+    floatingIcons.forEach((icon, index) => {
+      // Random initial positions
+      gsap.set(icon, {
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        rotation: Math.random() * 360,
+        scale: 0.6 + Math.random() * 0.4
+      });
+      
+      // Continuous floating animation
+      gsap.to(icon, {
+        x: `+=${(Math.random() - 0.5) * 400}`,
+        y: `+=${(Math.random() - 0.5) * 300}`,
+        rotation: `+=${360 + Math.random() * 360}`,
+        duration: 20 + Math.random() * 15,
+        ease: "none",
+        repeat: -1,
+        yoyo: true,
+        delay: index * 2
+      });
+      
+      // Subtle scale pulse
+      gsap.to(icon, {
+        scale: `+=${0.2 + Math.random() * 0.3}`,
+        duration: 3 + Math.random() * 4,
+        ease: "power2.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: index * 0.5
+      });
+      
+      // Opacity breathing effect
+      gsap.to(icon, {
+        opacity: 0.3 + Math.random() * 0.4,
+        duration: 4 + Math.random() * 3,
+        ease: "power2.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: index * 1.2
+      });
+    });
+    
+    // Parallax effect on scroll
+    ScrollTrigger.batch('.floating-icon-1, .floating-icon-2, .floating-icon-3, .floating-icon-4, .floating-icon-5', {
+      onUpdate: (elements) => {
+        elements.forEach((element, index) => {
+          const speed = 0.5 + (index * 0.2);
+          const yPos = -(window.scrollY * speed);
+          gsap.set(element, { y: yPos });
+        });
+      }
+    });
     
     // Marquee animation
     const marqueeAnimation = gsap.to('.marquee-content', {
