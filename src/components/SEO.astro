@@ -12,7 +12,7 @@ export interface Props {
 
 const {
   title = "Shine Gupta - Data Scientist & Analytics Expert",
-  description = "Passionate data scientist specializing in machine learning, statistical analysis, and data visualization. Transforming complex data into actionable insights for business growth.",
+  description = "Passionate data scientist specializing in machine learning, statistical analysis, and data visualization. Transforming data into insights.",
   image = "/og-image.jpeg",
   canonical,
   noindex = false,
@@ -43,7 +43,7 @@ const personSchema = {
   knowsAbout: [
     "Machine Learning",
     "Statistical Analysis",
-    "Data Visualization", 
+    "Data Visualization",
     "Python",
     "R",
     "SQL",
@@ -71,82 +71,81 @@ const websiteSchema = {
 ---
 
 <AstroSEO
-  title={title}
-  description={description}
-  canonical={canonical || siteUrl}
-  noindex={noindex}
-  nofollow={nofollow}
-  openGraph={{
-    basic: {
+    title={title}
+    description={description}
+    canonical={canonical || siteUrl}
+    noindex={noindex}
+    nofollow={nofollow}
+    openGraph={{
+      basic: {
+        title: title,
+        type: "website",
+        image: `${siteUrl}${image}`,
+        url: canonical || siteUrl,
+      },
+      optional: {
+        description: description,
+        siteName: siteName,
+        locale: "en_US",
+      },
+      image: {
+        url: `${siteUrl}${image}`,
+        secureUrl: `${siteUrl}${image}`,
+        type: "image/jpeg",
+        width: 1200,
+        height: 630,
+        alt: `${author} - Data Scientist Portfolio`,
+      },
+      article: {
+        publishedTime: "2024-01-01T00:00:00Z",
+        modifiedTime: new Date().toISOString(),
+        section: "Portfolio",
+      },
+    }}
+    twitter={{
+      card: "summary_large_image",
+      site: twitterHandle,
+      creator: twitterHandle,
       title: title,
-      type: "website",
-      image: `${siteUrl}${image}`,
-      url: canonical || siteUrl,
-    },
-    optional: {
       description: description,
-      siteName: siteName,
-      locale: "en_US",
-    },
-    image: {
-      url: `${siteUrl}${image}`,
-      secureUrl: `${siteUrl}${image}`,
-      type: "image/jpeg",
-      width: 1200,
-      height: 630,
-      alt: `${author} - Data Scientist Portfolio`,
-    },
-    article: {
-      publishedTime: "2024-01-01T00:00:00Z",
-      modifiedTime: new Date().toISOString(),
-      section: "Portfolio",
-    },
-  }}
-  twitter={{
-    card: "summary_large_image",
-    site: twitterHandle,
-    creator: twitterHandle,
-    title: title,
-    description: description,
-    image: `${siteUrl}${image}`,
-    imageAlt: `${author} - Data Scientist Portfolio`,
-  }}
-  extend={{
-    meta: [
-      { name: "viewport", content: "width=device-width, initial-scale=1.0" },
-      { name: "mobile-web-app-capable", content: "yes" },
-      { name: "apple-mobile-web-app-capable", content: "yes" },
-      { name: "apple-mobile-web-app-status-bar-style", content: "default" },
-      { name: "theme-color", content: "#D7ABC5" },
-      { name: "msapplication-TileColor", content: "#D7ABC5" },
-      { name: "msapplication-navbutton-color", content: "#D7ABC5" },
-      { name: "keywords", content: "data scientist, machine learning, statistical analysis, data visualization, python, r, sql, analytics, business intelligence, deep learning, AI, data mining, predictive modeling" },
-      { name: "author", content: author },
-      { name: "copyright", content: `© ${new Date().getFullYear()} ${author}. All rights reserved.` },
-      { name: "robots", content: noindex || nofollow ? `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' : 'follow'}` : "index,follow" },
-      { name: "geo.region", content: "US" },
-      { name: "language", content: "en" },
-      { name: "content-language", content: "en-us" },
-      { name: "category", content: "Professional Portfolio" },
-      { name: "classification", content: "Data Science Portfolio" },
-      { name: "subject", content: "Data Science, Machine Learning, Analytics" },
-      { property: "article:author", content: linkedinProfile },
-      { property: "profile:first_name", content: author.split(' ')[0] },
-      { property: "profile:last_name", content: author.split(' ')[1] || "" },
-      { property: "og:locale:alternate", content: "en_GB" },
-      { property: "og:see_also", content: linkedinProfile },
-      { property: "linkedin:owner", content: linkedinProfile },
-    ],
-    link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
-      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
-      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
-      { rel: "manifest", href: "/site.webmanifest" },
-      { rel: "canonical", href: canonical || siteUrl },
-      { rel: "alternate", type: "application/rss+xml", title: `${siteName} RSS Feed`, href: `${siteUrl}/rss.xml` },
-    ],
-  }}
+      image: `${siteUrl}${image}`,
+      imageAlt: `${author} - Data Scientist Portfolio`,
+    }}
+    extend={{
+      meta: [
+        { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+        { name: "mobile-web-app-capable", content: "yes" },
+        { name: "apple-mobile-web-app-capable", content: "yes" },
+        { name: "apple-mobile-web-app-status-bar-style", content: "default" },
+        { name: "theme-color", content: "#D7ABC5" },
+        { name: "msapplication-TileColor", content: "#D7ABC5" },
+        { name: "msapplication-navbutton-color", content: "#D7ABC5" },
+        { name: "keywords", content: "data scientist, machine learning, statistical analysis, data visualization, python, r, sql, analytics, business intelligence, deep learning, AI, data mining, predictive modeling, portfolio, shine gupta" },
+        { name: "author", content: author },
+        { name: "copyright", content: `© ${new Date().getFullYear()} ${author}. All rights reserved.` },
+        { name: "robots", content: noindex || nofollow ? `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' : 'follow'}` : "index,follow" },
+        { name: "geo.region", content: "US" },
+        { name: "language", content: "en" },
+        { name: "content-language", content: "en-us" },
+        { name: "category", content: "Professional Portfolio" },
+        { name: "classification", content: "Data Science Portfolio" },
+        { name: "subject", content: "Data Science, Machine Learning, Analytics" },
+        { property: "article:author", content: linkedinProfile },
+        { property: "profile:first_name", content: author.split(' ')[0] },
+        { property: "profile:last_name", content: author.split(' ')[1] || "" },
+        { property: "og:locale:alternate", content: "en_GB" },
+        { property: "og:see_also", content: linkedinProfile },
+        { property: "linkedin:owner", content: linkedinProfile },
+      ],
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
+        { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
+        { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+        { rel: "manifest", href: "/site.webmanifest" },
+        { rel: "alternate", type: "application/rss+xml", title: `${siteName} RSS Feed`, href: `${siteUrl}/rss.xml` },
+      ],
+    }}
 />
 
 <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
@@ -154,8 +153,8 @@ const websiteSchema = {
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-PRQ5PFVT');</script>
 <!-- End Google Tag Manager -->

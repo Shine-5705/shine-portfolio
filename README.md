@@ -267,21 +267,24 @@ graph LR
 ## 🛠️ Development Workflow
 
 ```mermaid
-gitgraph
+gitGraph
     commit id: "Initial Setup"
     branch feature/hero-section
+    checkout feature/hero-section
     commit id: "Hero Component"
     commit id: "GSAP Animations"
     commit id: "Floating Cards"
     checkout main
     merge feature/hero-section
     branch feature/styling
+    checkout feature/styling
     commit id: "SCSS Architecture"
     commit id: "Color System"
     commit id: "Typography Scale"
     checkout main
     merge feature/styling
     branch feature/seo
+    checkout feature/seo
     commit id: "SEO Component"
     commit id: "Web Manifest"
     commit id: "PWA Features"
