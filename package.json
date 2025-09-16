@@ -18,7 +18,8 @@
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.4",
     "gsap": "^3.13.0",
-    "resend": "^6.0.3"
+    "resend": "^6.0.3",
+    "three": "^0.180.0"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
