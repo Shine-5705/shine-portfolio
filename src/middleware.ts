@@ -238,7 +238,7 @@ export const onRequest = defineMiddleware(async (context: APIContext, next) => {
         modifiedResponse.headers.set('Content-Security-Policy', getCSP(pathname));
 
         modifiedResponse.headers.set('X-Response-Time', `${duration}ms`);
-        modifiedResponse.headers.set('X-Served-By', 'Astro-Middleware');
+        modifiedResponse.headers.set('X-Owner', 'Shine Gupta');
 
         if (pathname.match(/\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$/)) {
             modifiedResponse.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
