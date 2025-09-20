@@ -340,7 +340,5 @@ const projects = await fetchGitHubData();
         .fromTo('.section-tag', { y: 30, opacity: 0 }, { duration: 0.8, y: 0, opacity: 1, ease: 'power3.out' })
         .fromTo('.section-title', { y: 50, opacity: 0 }, { duration: 1, y: 0, opacity: 1, ease: 'power3.out' }, '-=0.6')
         .fromTo('.title-underline', { scaleX: 0 }, { duration: 1, scaleX: 1, ease: 'power3.out' }, '-=0.4');
-
-        console.log('Animation system info:', animations.getInfo());
     });
 </script>
