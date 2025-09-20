@@ -172,46 +172,31 @@ const projects = await fetchGitHubData();
         const cards = document.querySelectorAll('.project-card');
         const floatingIcons = document.querySelectorAll('[data-icon-id]') as NodeListOf<HTMLElement>;
 
-        // Wait for section to be rendered then position icons
-        setTimeout(() => {
-            floatingIcons.forEach((icon, index) => {
-                const iconId = parseInt(icon.dataset.iconId || '0');
-                animations.addIcon(icon, iconId);
+        floatingIcons.forEach((icon, index) => {
+            const iconId = parseInt(icon.dataset.iconId || '0');
+            animations.addIcon(icon, iconId);
 
-                const projectSection = document.querySelector('.projects-container') as HTMLElement;
-                if (!projectSection) return;
+            const positions = [
+                { x: '15%', y: '20%' },   // top-left area
+                { x: '85%', y: '25%' },   // top-right area  
+                { x: '10%', y: '50%' },   // middle-left
+                { x: '90%', y: '45%' },   // middle-right
+                { x: '50%', y: '75%' }    // bottom-center
+            ];
 
-                const sectionRect = projectSection.getBoundingClientRect();
-                const sectionWidth = sectionRect.width;
-                const sectionHeight = sectionRect.height;
-                
-                // Position icons relative to the section, not viewport
-                const padding = 80;
-                const positionAreas = [
-                    { x: padding, y: padding }, // top-left
-                    { x: sectionWidth - padding, y: padding }, // top-right  
-                    { x: padding, y: sectionHeight / 2 }, // middle-left
-                    { x: sectionWidth - padding, y: sectionHeight / 2 }, // middle-right
-                    { x: sectionWidth / 2, y: sectionHeight - padding } // bottom-center
-                ];
+            const position = positions[index] || positions[0];
+            
+            const randomX = (Math.random() - 0.5) * 20; // ±10% variation
+            const randomY = (Math.random() - 0.5) * 20; // ±10% variation
 
-                const area = positionAreas[index] || positionAreas[0];
-                const randomOffsetX = (Math.random() - 0.5) * 200;
-                const randomOffsetY = (Math.random() - 0.5) * 200;
-
-                gsap.set(icon, {
-                    x: area.x + randomOffsetX,
-                    y: area.y + randomOffsetY,
-                    rotation: Math.random() * 360,
-                    scale: 0.6 + Math.random() * 0.4,
-                    position: 'absolute',
-                    left: 0,
-                    top: 0
-                });
-
-                console.log(`Icon ${iconId} positioned at:`, area.x + randomOffsetX, area.y + randomOffsetY);
+            gsap.set(icon, {
+                left: `calc(${position.x} + ${randomX}%)`,
+                top: `calc(${position.y} + ${randomY}%)`,
+                position: 'absolute',
+                rotation: Math.random() * 360,
+                scale: 0.6 + Math.random() * 0.4
             });
-        }, 100);
+        });
 
         animations.start();
 

@@ -38,7 +38,6 @@ export class AboutWASM {
             this.module.ccall('aboutInit', 'void', ['number', 'number'], [width, height]);
             await this.createFlowers();
             this.initialized = true;
-            console.log('WASM About initialized with', this.flowers.length, 'SVG flowers');
         } catch (error) {
             console.log('WASM failed, using fallback:', error);
             this.fallback = true;
@@ -97,8 +96,6 @@ export class AboutWASM {
         
         const flowerGeometry = this.createFlowerGeometry();
         
-        console.log('Loading 12 About SVG flowers...');
-        
         for (let i = 0; i < 12; i++) {
             const svgIndex = (i % 6) + 1;
             const svgPath = `/flowers/flower${svgIndex}.svg`;
@@ -122,21 +119,16 @@ export class AboutWASM {
                 flower.userData = { id: i, time: Math.random() * Math.PI * 2 };
                 this.flowers.push(flower);
                 this.scene.add(flower);
-                console.log(`Added About SVG flower ${i + 1} from ${svgPath} at position:`, flower.position);
             } catch (error) {
                 console.error(`Failed to load About flower ${i + 1}:`, error);
             }
         }
-        
-        console.log('Total About SVG flowers in scene:', this.flowers.length);
     }
 
     private async createFallbackFlowers(): Promise<void> {
         if (!this.scene) return;
         
         const flowerGeometry = this.createFlowerGeometry();
-        
-        console.log('Loading 12 fallback About SVG flowers...');
         
         for (let i = 0; i < 12; i++) {
             const svgIndex = (i % 6) + 1;
@@ -166,13 +158,10 @@ export class AboutWASM {
                 };
                 this.flowers.push(flower);
                 this.scene.add(flower);
-                console.log(`Added fallback About SVG flower ${i + 1} from ${svgPath} at position:`, flower.position);
             } catch (error) {
                 console.error(`Failed to load fallback About flower ${i + 1}:`, error);
             }
         }
-        
-        console.log('Total fallback About SVG flowers in scene:', this.flowers.length);
     }
 
     start(): void {

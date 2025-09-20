@@ -210,8 +210,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const aboutContainer = document.querySelector('.about-container') as HTMLElement;
   
   if (canvas && aboutContainer) {
-    console.log('About canvas found, initializing Three.js...');
-
     const scene = new THREE.Scene();
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -231,8 +229,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderer.setClearColor(0x000000, 0);
     camera.position.z = 5;
 
-    console.log('About scene initialized');
-
     const animations = await createAboutAnimations(scene, aboutContainer);
     animations.start();
 
@@ -241,9 +237,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
       
-      if (frameCount % 120 === 0) {
-        console.log('About rendering frame', frameCount, 'Scene children:', scene.children.length);
-      }
       frameCount++;
     }
     animate();
@@ -258,12 +251,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       renderer.setSize(width, height);
       
       animations.handleResize();
-      console.log('About resized to:', width, 'x', height);
     }
 
     window.addEventListener('resize', handleResize);
-
-    console.log('About animation info:', animations.getInfo());
   }
 
   gsap.set(['.section-tag', '.section-title', '.title-underline', '.image-container', '.floating-stats .stat-1', '.floating-stats .stat-2', '.floating-stats .stat-3', '.skills-title', '.skill-bar', '.story-card', '.info-title', '.info-item', '.timeline-title', '.timeline-item'], { opacity: 1 });
