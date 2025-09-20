@@ -1,0 +1,222 @@
+@use './colour';
+@use './font';
+
+.footerContainer {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(215, 171, 197, 0.2);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(215, 171, 197, 0.5) 20%,
+            rgba(99, 102, 241, 0.5) 50%,
+            rgba(215, 171, 197, 0.5) 80%,
+            transparent 100%
+    );
+  }
+
+  .threeJsCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .footerContent {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 2;
+
+    .footerBrand {
+      .brandName {
+        font-family: font.$font-heading;
+        font-size: font.$font-size-2xl;
+        color: colour.$text-inverse;
+        margin: 0;
+        background: colour.$gradient-primary;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 30px rgba(215, 171, 197, 0.3);
+      }
+
+      .brandTagline {
+        @include font.body-small;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 4px 0 0 0;
+        font-weight: font.$font-weight-light;
+      }
+    }
+
+    .socialLinks {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+
+      .socialLink {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+          transition: left 0.5s;
+        }
+
+        svg {
+          width: 20px;
+          height: 20px;
+          z-index: 1;
+          transition: transform 0.3s ease;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          background: rgba(255, 255, 255, 0.12);
+          border-color: rgba(215, 171, 197, 0.4);
+          box-shadow: 0 8px 32px rgba(215, 171, 197, 0.2);
+          color: colour.$rose-pink;
+
+          &::before {
+            left: 100%;
+          }
+
+          svg {
+            transform: scale(1.1);
+          }
+        }
+
+        &.github:hover {
+          color: #ffffff;
+        }
+
+        &.linkedin:hover {
+          color: #0077B5;
+        }
+
+        &.twitter:hover {
+          color: #000000;
+        }
+
+        &.instagram:hover {
+          background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+          color: #ffffff;
+        }
+
+        &.dribbble:hover {
+          color: #ea4c89;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footerContainer {
+    height: 100px;
+
+    .footerContent {
+      padding: 0 20px;
+
+      .footerBrand {
+        .brandName {
+          font-size: font.$font-size-xl;
+        }
+
+        .brandTagline {
+          font-size: font.$font-size-xs;
+        }
+      }
+
+      .socialLinks {
+        gap: 16px;
+
+        .socialLink {
+          width: 40px;
+          height: 40px;
+
+          svg {
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .footerContainer {
+    height: 80px;
+
+    .footerContent {
+      padding: 0 16px;
+      flex-direction: column;
+      gap: 12px;
+
+      .footerBrand {
+        text-align: center;
+
+        .brandName {
+          font-size: font.$font-size-lg;
+        }
+
+        .brandTagline {
+          display: none;
+        }
+      }
+
+      .socialLinks {
+        gap: 12px;
+
+        .socialLink {
+          width: 36px;
+          height: 36px;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+    }
+  }
+}
