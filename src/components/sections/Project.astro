@@ -172,28 +172,46 @@ const projects = await fetchGitHubData();
         const cards = document.querySelectorAll('.project-card');
         const floatingIcons = document.querySelectorAll('[data-icon-id]') as NodeListOf<HTMLElement>;
 
-        floatingIcons.forEach((icon, index) => {
-            const iconId = parseInt(icon.dataset.iconId || '0');
-            animations.addIcon(icon, iconId);
+        // Wait for section to be rendered then position icons
+        setTimeout(() => {
+            floatingIcons.forEach((icon, index) => {
+                const iconId = parseInt(icon.dataset.iconId || '0');
+                animations.addIcon(icon, iconId);
 
-            const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
-            const padding = 100;
-            const minX = padding;
-            const maxX = viewportWidth - padding;
-            const minY = padding;
-            const maxY = viewportHeight - padding;
+                const projectSection = document.querySelector('.projects-container') as HTMLElement;
+                if (!projectSection) return;
 
-            const initialX = minX + Math.random() * (maxX - minX);
-            const initialY = minY + Math.random() * (maxY - minY);
+                const sectionRect = projectSection.getBoundingClientRect();
+                const sectionWidth = sectionRect.width;
+                const sectionHeight = sectionRect.height;
+                
+                // Position icons relative to the section, not viewport
+                const padding = 80;
+                const positionAreas = [
+                    { x: padding, y: padding }, // top-left
+                    { x: sectionWidth - padding, y: padding }, // top-right  
+                    { x: padding, y: sectionHeight / 2 }, // middle-left
+                    { x: sectionWidth - padding, y: sectionHeight / 2 }, // middle-right
+                    { x: sectionWidth / 2, y: sectionHeight - padding } // bottom-center
+                ];
 
-            gsap.set(icon, {
-                x: initialX,
-                y: initialY,
-                rotation: Math.random() * 360,
-                scale: 0.6 + Math.random() * 0.4
+                const area = positionAreas[index] || positionAreas[0];
+                const randomOffsetX = (Math.random() - 0.5) * 200;
+                const randomOffsetY = (Math.random() - 0.5) * 200;
+
+                gsap.set(icon, {
+                    x: area.x + randomOffsetX,
+                    y: area.y + randomOffsetY,
+                    rotation: Math.random() * 360,
+                    scale: 0.6 + Math.random() * 0.4,
+                    position: 'absolute',
+                    left: 0,
+                    top: 0
+                });
+
+                console.log(`Icon ${iconId} positioned at:`, area.x + randomOffsetX, area.y + randomOffsetY);
             });
-        });
+        }, 100);
 
         animations.start();
 
@@ -218,7 +236,10 @@ const projects = await fetchGitHubData();
         });
 
         let isScrolling = false;
-        let scrollTimeout: ReturnType<typeof setTimeout>;
+        let scrollTimeout: number | undefined;
+        let isDragging = false;
+        let startX = 0;
+        let dragStartPos = 0;
 
         marquee?.addEventListener('wheel', (e) => {
             e.preventDefault();
@@ -228,25 +249,65 @@ const projects = await fetchGitHubData();
                 isScrolling = true;
             }
 
-            clearTimeout(scrollTimeout);
+            if (scrollTimeout) clearTimeout(scrollTimeout);
 
             const currentX = gsap.getProperty('.marquee-content', 'x') as number;
-            const newX = currentX - (e.deltaY * 2);
+            let newX = currentX - (e.deltaY * 2);
+            
+            const maxX = 0;
+            const minX = -window.innerWidth;
+            newX = Math.max(minX, Math.min(maxX, newX));
 
             gsap.set('.marquee-content', { x: newX });
 
-            scrollTimeout = setTimeout(() => {
+            scrollTimeout = window.setTimeout(() => {
                 isScrolling = false;
                 marqueeAnimation.resume();
             }, 150);
         });
 
-        let startX = 0;
-        let currentX = 0;
-        let isDragging = false;
+        marquee?.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            startX = e.clientX;
+            dragStartPos = gsap.getProperty('.marquee-content', 'x') as number;
+            marqueeAnimation.pause();
+            isDragging = true;
+            if (marquee) marquee.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+
+            const deltaX = e.clientX - startX;
+            let newX = dragStartPos + deltaX;
+            
+            const maxX = 0;
+            const minX = -window.innerWidth;
+            newX = Math.max(minX, Math.min(maxX, newX));
+
+            gsap.set('.marquee-content', { x: newX });
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                if (marquee) marquee.style.cursor = 'grab';
+                
+                const currentPos = gsap.getProperty('.marquee-content', 'x') as number;
+                marqueeAnimation.progress((Math.abs(currentPos) / window.innerWidth) * 0.5);
+                
+                window.setTimeout(() => {
+                    if (!isScrolling && !isDragging) {
+                        marqueeAnimation.resume();
+                    }
+                }, 100);
+            }
+        });
 
         marquee?.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
+            dragStartPos = gsap.getProperty('.marquee-content', 'x') as number;
             marqueeAnimation.pause();
             isDragging = true;
         });
@@ -255,48 +316,27 @@ const projects = await fetchGitHubData();
             if (!isDragging) return;
             e.preventDefault();
 
-            currentX = e.touches[0].clientX;
-            const deltaX = currentX - startX;
-            const currentPos = gsap.getProperty('.marquee-content', 'x') as number;
+            const deltaX = e.touches[0].clientX - startX;
+            let newX = dragStartPos + deltaX;
+            
+            const maxX = 0;
+            const minX = -window.innerWidth;
+            newX = Math.max(minX, Math.min(maxX, newX));
 
-            gsap.set('.marquee-content', { x: currentPos + deltaX });
-            startX = currentX;
+            gsap.set('.marquee-content', { x: newX });
         });
 
         marquee?.addEventListener('touchend', () => {
             isDragging = false;
-            setTimeout(() => {
-                marqueeAnimation.resume();
-            }, 300);
-        });
-
-        marquee?.addEventListener('mousedown', (e) => {
-            startX = e.clientX;
-            marqueeAnimation.pause();
-            isDragging = true;
-            marquee.style.cursor = 'grabbing';
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-
-            currentX = e.clientX;
-            const deltaX = currentX - startX;
+            
             const currentPos = gsap.getProperty('.marquee-content', 'x') as number;
-
-            gsap.set('.marquee-content', { x: currentPos + deltaX });
-            startX = currentX;
-        });
-
-        document.addEventListener('mouseup', () => {
-            if (isDragging) {
-                isDragging = false;
-                if (marquee) marquee.style.cursor = 'grab';
-                setTimeout(() => {
+            marqueeAnimation.progress((Math.abs(currentPos) / window.innerWidth) * 0.5);
+            
+            window.setTimeout(() => {
+                if (!isScrolling && !isDragging) {
                     marqueeAnimation.resume();
-                }, 300);
-            }
+                }
+            }, 100);
         });
 
         marquee?.addEventListener('mouseenter', () => {
