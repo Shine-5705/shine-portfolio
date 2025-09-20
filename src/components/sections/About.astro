@@ -7,6 +7,8 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
 ---
 
 <section class={style.aboutContainer + ' about-container'}>
+    <canvas class={style.threeJsCanvas} id="aboutCanvas"></canvas>
+    
     <div class={style.floatingImages}>
         <Image src={atomImg} alt="atom" class={style.floatingImg + ' ' + style.img1} />
         <Image src={atomImg} alt="atom" class={style.floatingImg + ' ' + style.img2} />
@@ -198,10 +200,72 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
 <script>
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import * as THREE from 'three';
+import { createAboutAnimations } from '../../lib/AboutWASM';
 
 gsap.registerPlugin(ScrollTrigger);
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  const canvas = document.getElementById('aboutCanvas') as HTMLCanvasElement;
+  const aboutContainer = document.querySelector('.about-container') as HTMLElement;
+  
+  if (canvas && aboutContainer) {
+    console.log('About canvas found, initializing Three.js...');
+
+    const scene = new THREE.Scene();
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      alpha: true,
+      antialias: true
+    });
+
+    const updateDimensions = () => {
+      const rect = aboutContainer.getBoundingClientRect();
+      return { width: rect.width, height: rect.height };
+    };
+
+    let { width, height } = updateDimensions();
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+    
+    renderer.setSize(width, height);
+    renderer.setClearColor(0x000000, 0);
+    camera.position.z = 5;
+
+    console.log('About scene initialized');
+
+    const animations = await createAboutAnimations(scene, aboutContainer);
+    animations.start();
+
+    let frameCount = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+      
+      if (frameCount % 120 === 0) {
+        console.log('About rendering frame', frameCount, 'Scene children:', scene.children.length);
+      }
+      frameCount++;
+    }
+    animate();
+
+    function handleResize() {
+      const newDimensions = updateDimensions();
+      width = newDimensions.width;
+      height = newDimensions.height;
+
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+      
+      animations.handleResize();
+      console.log('About resized to:', width, 'x', height);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    console.log('About animation info:', animations.getInfo());
+  }
+
   gsap.set(['.section-tag', '.section-title', '.title-underline', '.image-container', '.floating-stats .stat-1', '.floating-stats .stat-2', '.floating-stats .stat-3', '.skills-title', '.skill-bar', '.story-card', '.info-title', '.info-item', '.timeline-title', '.timeline-item'], { opacity: 1 });
 
   gsap.timeline({
