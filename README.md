@@ -1,5 +1,4 @@
 # 💖 Shine Gupta - Data Scientist Portfolio
-HI
 
 > A beautifully crafted portfolio showcasing data science expertise with smooth animations and modern design
 
