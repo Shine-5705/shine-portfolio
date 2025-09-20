@@ -226,6 +226,21 @@ const projects = await fetchGitHubData();
         let startX = 0;
         let dragStartPos = 0;
 
+        // Get the actual width of the marquee content for proper infinite scroll
+        const getMarqueeWidth = () => {
+            const marqueeContent = document.querySelector('.marquee-content') as HTMLElement;
+            return marqueeContent ? marqueeContent.scrollWidth / 2 : window.innerWidth; // Divide by 2 because content is duplicated
+        };
+
+        // Function to normalize position for infinite scroll
+        const normalizePosition = (x: number) => {
+            const marqueeWidth = getMarqueeWidth();
+            // Keep the position within one full cycle (0 to -marqueeWidth)
+            while (x > 0) x -= marqueeWidth;
+            while (x < -marqueeWidth) x += marqueeWidth;
+            return x;
+        };
+
         marquee?.addEventListener('wheel', (e) => {
             e.preventDefault();
 
@@ -239,14 +254,17 @@ const projects = await fetchGitHubData();
             const currentX = gsap.getProperty('.marquee-content', 'x') as number;
             let newX = currentX - (e.deltaY * 2);
             
-            const maxX = 0;
-            const minX = -window.innerWidth;
-            newX = Math.max(minX, Math.min(maxX, newX));
+            // Normalize position for infinite scroll
+            newX = normalizePosition(newX);
 
             gsap.set('.marquee-content', { x: newX });
 
             scrollTimeout = window.setTimeout(() => {
                 isScrolling = false;
+                // Update animation progress based on normalized position
+                const marqueeWidth = getMarqueeWidth();
+                const progress = Math.abs(newX) / marqueeWidth;
+                marqueeAnimation.progress(progress);
                 marqueeAnimation.resume();
             }, 150);
         });
@@ -267,9 +285,8 @@ const projects = await fetchGitHubData();
             const deltaX = e.clientX - startX;
             let newX = dragStartPos + deltaX;
             
-            const maxX = 0;
-            const minX = -window.innerWidth;
-            newX = Math.max(minX, Math.min(maxX, newX));
+            // Normalize position for infinite scroll
+            newX = normalizePosition(newX);
 
             gsap.set('.marquee-content', { x: newX });
         });
@@ -280,7 +297,12 @@ const projects = await fetchGitHubData();
                 if (marquee) marquee.style.cursor = 'grab';
                 
                 const currentPos = gsap.getProperty('.marquee-content', 'x') as number;
-                marqueeAnimation.progress((Math.abs(currentPos) / window.innerWidth) * 0.5);
+                const normalizedPos = normalizePosition(currentPos);
+                
+                // Update animation progress based on normalized position
+                const marqueeWidth = getMarqueeWidth();
+                const progress = Math.abs(normalizedPos) / marqueeWidth;
+                marqueeAnimation.progress(progress);
                 
                 window.setTimeout(() => {
                     if (!isScrolling && !isDragging) {
@@ -304,9 +326,8 @@ const projects = await fetchGitHubData();
             const deltaX = e.touches[0].clientX - startX;
             let newX = dragStartPos + deltaX;
             
-            const maxX = 0;
-            const minX = -window.innerWidth;
-            newX = Math.max(minX, Math.min(maxX, newX));
+            // Normalize position for infinite scroll
+            newX = normalizePosition(newX);
 
             gsap.set('.marquee-content', { x: newX });
         });
@@ -315,7 +336,12 @@ const projects = await fetchGitHubData();
             isDragging = false;
             
             const currentPos = gsap.getProperty('.marquee-content', 'x') as number;
-            marqueeAnimation.progress((Math.abs(currentPos) / window.innerWidth) * 0.5);
+            const normalizedPos = normalizePosition(currentPos);
+            
+            // Update animation progress based on normalized position
+            const marqueeWidth = getMarqueeWidth();
+            const progress = Math.abs(normalizedPos) / marqueeWidth;
+            marqueeAnimation.progress(progress);
             
             window.setTimeout(() => {
                 if (!isScrolling && !isDragging) {
