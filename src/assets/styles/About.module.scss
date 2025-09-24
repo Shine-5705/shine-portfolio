@@ -279,6 +279,44 @@
                 line-height: font.$line-height-relaxed;
                 margin: 0;
             }
+
+            .techStackContent {
+                .techCategory {
+                    margin-bottom: 24px;
+
+                    .categoryTitle {
+                        font-family: font.$font-heading;
+                        font-size: font.$font-size-lg;
+                        color: colour.$rose-pink;
+                        margin: 0 0 12px 0;
+                        font-weight: font.$font-weight-semibold;
+                    }
+
+                    .techTags {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 8px;
+
+                        .techTag {
+                            background: rgba(215, 171, 197, 0.15);
+                            border: 1px solid rgba(215, 171, 197, 0.3);
+                            color: colour.$text-inverse;
+                            padding: 6px 12px;
+                            border-radius: 16px;
+                            font-size: font.$font-size-sm;
+                            font-weight: font.$font-weight-medium;
+                            transition: all 0.3s ease;
+
+                            &:hover {
+                                background: rgba(215, 171, 197, 0.25);
+                                border-color: colour.$rose-pink;
+                                transform: translateY(-2px);
+                                box-shadow: 0 4px 12px rgba(215, 171, 197, 0.2);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         .personalInfo {
@@ -435,6 +473,30 @@
                         font-weight: font.$font-weight-semibold;
                         display: block;
                         margin-bottom: 15px;
+                    }
+
+                    .timelineTech {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 6px;
+                        margin-bottom: 15px;
+
+                        .techTag {
+                            background: rgba(215, 171, 197, 0.12);
+                            border: 1px solid rgba(215, 171, 197, 0.25);
+                            color: rgba(255, 255, 255, 0.9);
+                            padding: 4px 10px;
+                            border-radius: 12px;
+                            font-size: font.$font-size-xs;
+                            font-weight: font.$font-weight-medium;
+                            transition: all 0.3s ease;
+
+                            &:hover {
+                                background: rgba(215, 171, 197, 0.2);
+                                border-color: colour.$rose-pink;
+                                transform: translateY(-1px);
+                            }
+                        }
                     }
 
                     .timelineDesc {

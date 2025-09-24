@@ -2,50 +2,130 @@
 import style from '../../assets/styles/Project.module.scss';
 import { Image } from 'astro:assets';
 
-const repositories = [
-    { url: "https://github.com/sinhaparth5/shine-portfolio", image: "/og-image.jpeg" },
-    { url: "https://github.com/sinhaparth5/shine-portfolio", image: "/og-image.jpeg" },
-    { url: "https://github.com/sinhaparth5/shine-portfolio", image: "/og-image.jpeg" },
-    { url: "https://github.com/sinhaparth5/shine-portfolio", image: "/og-image.jpeg" },
-    { url: "https://github.com/sinhaparth5/shine-portfolio", image: "/og-image.jpeg" },
-    { url: "https://github.com/sinhaparth5/shine-portfolio", image: "/og-image.jpeg" }
-];
-
-const parseGitHubUrl = (url: string) => {
-    const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
-    return match ? { owner: match[1], repo: match[2] } : null;
-};
-
-const fetchGitHubData = async () => {
-    const projects = [];
-    for (const repo of repositories) {
-        const parsed = parseGitHubUrl(repo.url);
-        if (!parsed) continue;
-
-        try {
-            const response = await fetch(`https://api.github.com/repos/${parsed.owner}/${parsed.repo}`);
-            if (response.ok) {
-                const data = await response.json();
-                projects.push({
-                    id: data.id,
-                    title: data.name,
-                    description: data.description || "No description available",
-                    stars: data.stargazers_count,
-                    language: data.language,
-                    topics: data.topics || [],
-                    github: data.html_url,
-                    image: repo.image,
-                    updated: new Date(data.updated_at).toLocaleDateString()
-                });
-            }
-        } catch (error) {
-            console.error(`Failed to fetch data for ${repo.url}:`, error);
-        }
+const projects = [
+    {
+        id: 1,
+        title: "CareMate",
+        description: "AI-Powered Chronic Disease Monitoring & Remote Care system using health sensors + LLMs to generate personalized health insights",
+        github: "https://github.com/Shine-5705/CareMate-AI-Powered-Chronic-Disease-Monitoring-Remote-Care",
+        demo: "https://studio.youtube.com/video/BxexK93VRkA/edit",
+        live: "https://caremate0507.netlify.app/",
+        image: "/og-image.jpeg",
+        topics: ["OpenCV", "Raspberry Pi", "Arduino", "TTS APIs", "LLMs", "Transformers", "Computer Vision", "Python", "Flask", "Docker"],
+        stars: 15,
+        language: "Python"
+    },
+    {
+        id: 2,
+        title: "YourLOVER – WhatsApp MCP Server",
+        description: "Secure persona-driven mental health companion supporting 20+ languages.",
+        github: "https://github.com/Shine-5705",
+        live: "https://puch.ai/mcp/OvlqtQtqZz",
+        image: "/og-image.jpeg",
+        topics: ["Python 3.11", "Groq Llama 3.3 70B", "MCP", "Docker", "PostgreSQL"],
+        stars: 12,
+        language: "Python"
+    },
+    
+    {
+        id: 4,
+        title: "AutoAttend_Gmeet",
+        description: "Automation tool to auto-join Google Meet, monitor captions, detect name mentions, and sync emoji reactions in real-time using Playwright.",
+        github: "https://github.com/Shine-5705/AutoAttend_Gmeet",
+        demo: "https://x.com/shine_gupta17/status/1964502066472358090",
+        image: "/og-image.jpeg",
+        topics: ["Playwright", "Deep Learning", "Chromium", "JSON & TXT logging", "FastAPI", "Docker", "Python"],
+        stars: 10,
+        language: "Python"
+    },
+    {
+        id: 5,
+        title: "CSV Summarizer & Emailer",
+        description: "Streamlit application to analyze CSV data, generate AI-powered summaries with Mistral, and send insights via email with PDF and CSV attachments.",
+        github: "https://github.com/Shine-5705/csv-monitor-summarizer",
+        demo: "https://t.co/C2XSLT3lfX",
+        live: "https://csv-summarizer-emailer.onrender.com/",
+        image: "/og-image.jpeg",
+        topics: ["Streamlit", "Deep Learning", "Mistral API", "Gmail SMTP", "FastAPI", "Docker", "Python", "wkhtmltopdf", "Render"],
+        stars: 6,
+        language: "Python"
+    },
+    {
+        id: 6,
+        title: "LinkedIn Auto Connect Agent",
+        description: "Selenium-powered LinkedIn automation agent with a Streamlit interface to search, filter, and auto-connect with professionals while securely managing credentials.",
+        github: "https://github.com/Shine-5705/Connect_over_LinkedIN",
+        demo: "https://x.com/shine_gupta17/status/1925669474767663390",
+        image: "/og-image.jpeg",
+        topics: ["Streamlit", "Machine Learning", "Selenium", "Docker", "Python", "GitHub", "FastAPI"],
+        stars: 9,
+        language: "Python"
+    },
+    {
+        id: 7,
+        title: "LinkedIn Job Automator",
+        description: "Automates job applications directly on LinkedIn with custom filters (personal use; may trigger LinkedIn restrictions).",
+        github: "https://github.com/Shine-5705/Autonomous_LinkedIn",
+        image: "/og-image.jpeg",
+        topics: ["Python", "Selenium", "Automation"],
+        stars: 7,
+        language: "Python"
+    },
+    {
+        id: 3,
+        title: "DRDO Chatbot",
+        description: "Secure AI knowledge agent integrating FAISS + Streamlit for interactive query handling.",
+        github: "https://github.com/Shine-5705/Customer_Support_Agent",
+        image: "/og-image.jpeg",
+        topics: ["Python", "Streamlit", "FAISS", "Docker", "LLMs"],
+        stars: 8,
+        language: "Python"
+    },
+    {
+        id: 9,
+        title: "India Art, Culture & Tourism Dashboard",
+        description: "Data-driven Streamlit dashboard with Snowflake integration to showcase India's cultural heritage, analyze tourism patterns, and promote responsible tourism through interactive visualizations.",
+        github: "https://github.com/Shine-5705/bharat-culture-tourism-analytics",
+        demo: "https://studio.youtube.com/video/fsO8YhmsoQA/edit",
+        live: "https://huggingface.co/spaces/Shinegupta/bharat-culture-tourism-analytics",
+        image: "/og-image.jpeg",
+        topics: ["Streamlit", "Machine Learning", "PyDeck", "Snowflake", "Government tourism & culture datasets", "Docker", "Python", "Git", "FastAPI"],
+        stars: 14,
+        language: "Python"
+    },
+    {
+        id: 10,
+        title: "Real Time Violence Detection",
+        description: "Real-time violence detection system using a Vision Transformer (ViViT) model integrated with Twilio to trigger automated calls and SMS alerts when violence is detected through a live camera feed.",
+        github: "https://github.com/Shine-5705/Hawkeye-surveillance",
+        demo: "https://x.com/shine_gupta17/status/1925669474767663390",
+        image: "/og-image.jpeg",
+        topics: ["ViViT", "OpenCV", "TensorFlow", "Docker", "Python", "GitHub", "Twilio API"],
+        stars: 11,
+        language: "Python"
+    },
+    {
+        id: 8,
+        title: "CyberRakshak",
+        description: "AI-based Cybercrime Prediction System with 82% accuracy, integrating real-time risk scoring. Winner of Innotech 2023 Award",
+        github: "https://github.com/dorkydhruv/Cyber-Rakshak",
+        image: "/og-image.jpeg",
+        topics: ["Machine Learning", "Deep Learning", "TensorFlow", "Keras", "Flask", "Flutter", "Firebase", "Python"],
+        stars: 20,
+        language: "Python"
+    },
+    
+    {
+        id: 11,
+        title: "PaddleOCR Fine-tuning Project",
+        description: "Fine-tuned PaddleOCR on custom datasets for table detection and content recognition, improving detection and classification accuracy by 17%.",
+        github: "https://github.com/Shine-5705/PaddleOCR-Finetnuing",
+        image: "/og-image.jpeg",
+        topics: ["PaddleOCR", "Fine-tuning", "Table Detection", "OCR", "Python", "Machine Learning"],
+        stars: 5,
+        language: "Python"
     }
-    return projects;
-};
-
-const projects = await fetchGitHubData();
+];
 ---
 
 <section id="project" class={`${style.projectsContainer} projects-container`}>
@@ -126,7 +206,7 @@ const projects = await fetchGitHubData();
 
                                         {project.topics.length > 0 && (
                                             <div class={style.topicTags}>
-                                                {project.topics.slice(0, 3).map((topic: string) => (
+                                                {project.topics.slice(0, 4).map((topic: string) => (
                                                     <span class={style.topicTag}>{topic}</span>
                                                 ))}
                                             </div>
@@ -134,7 +214,6 @@ const projects = await fetchGitHubData();
                                     </div>
 
                                     <div class={style.projectMeta}>
-                                        <span class={style.updated}>Updated: {project.updated}</span>
                                         <div class={style.projectActions}>
                                             <a
                                                 href={project.github}
@@ -145,8 +224,34 @@ const projects = await fetchGitHubData();
                                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                                     <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
                                                 </svg>
-                                                View Code
+                                                GitHub
                                             </a>
+                                            {project.live && (
+                                                <a
+                                                    href={project.live}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    class={style.liveLink}
+                                                >
+                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                                                    </svg>
+                                                    Live Demo
+                                                </a>
+                                            )}
+                                            {project.demo && (
+                                                <a
+                                                    href={project.demo}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    class={style.demoLink}
+                                                >
+                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                        <path d="M8,5.14V19.14L19,12.14L8,5.14Z"/>
+                                                    </svg>
+                                                    Demo
+                                                </a>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

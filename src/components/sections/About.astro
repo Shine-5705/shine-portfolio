@@ -33,11 +33,11 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
                     </div>
                     <div class={style.floatingStats + ' floating-stats'}>
                         <div class={style.stat + ' stat-1'}>
-                            <span class={style.statNumber}>150+</span>
+                            <span class={style.statNumber}>50+</span>
                             <span class={style.statLabel}>Projects</span>
                         </div>
                         <div class={style.stat + ' stat-2'}>
-                            <span class={style.statNumber}>8</span>
+                            <span class={style.statNumber}>7</span>
                             <span class={style.statLabel}>Awards</span>
                         </div>
                         <div class={style.stat + ' stat-3'}>
@@ -104,17 +104,90 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
                     </p>
                 </div>
 
-                <div class={style.storyCard + ' story-card'}>
+                <div class={style.storyCard + ' story-card tech-stack-card'}>
                   <div class={style.cardHeader}>
                     <div class={style.cardIcon}><Lightbulb color='#D7ABC5' size={48} /></div>
-                    <h3 class={style.cardTitle + ' card-title'}>Philosophy</h3>
+                    <h3 class={style.cardTitle + ' card-title'}>Tech Stack</h3>
                   </div>
-                    <p class={style.cardText + ' card-text'}>
-                        Every dataset holds secrets waiting to be discovered. I combine rigorous statistical methods with creative problem-solving to extract actionable insights that drive meaningful business outcomes.
-                    </p>
+                    <div class={style.techStackContent}>
+                        <div class={style.techCategory}>
+                            <h4 class={style.categoryTitle}>Programming Languages</h4>
+                            <div class={style.techTags}>
+                                <span class={style.techTag}>Python</span>
+                                <span class={style.techTag}>C/C++</span>
+                                <span class={style.techTag}>JavaScript/TypeScript</span>
+                            </div>
+                        </div>
+                        
+                        <div class={style.techCategory}>
+                            <h4 class={style.categoryTitle}>AI/ML & Data Science</h4>
+                            <div class={style.techTags}>
+                                <span class={style.techTag}>PyTorch</span>
+                                <span class={style.techTag}>TensorFlow</span>
+                                <span class={style.techTag}>scikit-learn</span>
+                                <span class={style.techTag}>XGBoost</span>
+                                <span class={style.techTag}>Transformers</span>
+                                <span class={style.techTag}>Hugging Face</span>
+                                <span class={style.techTag}>Generative AI</span>
+                                <span class={style.techTag}>RAG pipelines</span>
+                                <span class={style.techTag}>LangChain</span>
+                                <span class={style.techTag}>LangGraph</span>
+                                <span class={style.techTag}>Continuous Thought Machine (CTMs)</span>
+                                <span class={style.techTag}>AI Agents</span>
+                                <span class={style.techTag}>OpenCV</span>
+                                <span class={style.techTag}>NEAT</span>
+                                <span class={style.techTag}>Applied AI</span>
+                                <span class={style.techTag}>MLOps</span>
+                            </div>
+                        </div>
+                        
+                        <div class={style.techCategory}>
+                            <h4 class={style.categoryTitle}>Web & Frameworks</h4>
+                            <div class={style.techTags}>
+                                <span class={style.techTag}>Flask</span>
+                                <span class={style.techTag}>FastAPI</span>
+                                <span class={style.techTag}>React</span>
+                                <span class={style.techTag}>Next.js</span>
+                                <span class={style.techTag}>Express.js</span>
+                            </div>
+                        </div>
+                        
+                        <div class={style.techCategory}>
+                            <h4 class={style.categoryTitle}>Databases</h4>
+                            <div class={style.techTags}>
+                                <span class={style.techTag}>PostgreSQL</span>
+                                <span class={style.techTag}>MySQL</span>
+                                <span class={style.techTag}>MongoDB</span>
+                                <span class={style.techTag}>Neo4j</span>
+                            </div>
+                        </div>
+                        
+                        <div class={style.techCategory}>
+                            <h4 class={style.categoryTitle}>Cloud & DevOps</h4>
+                            <div class={style.techTags}>
+                                <span class={style.techTag}>AWS (EC2, Lambda)</span>
+                                <span class={style.techTag}>GCP</span>
+                                <span class={style.techTag}>Docker</span>
+                                <span class={style.techTag}>Kubernetes</span>
+
+                            </div>
+                        </div>
+                        
+                        <div class={style.techCategory}>
+                            <h4 class={style.categoryTitle}>Other Tools & Specializations</h4>
+                            <div class={style.techTags}>
+                                <span class={style.techTag}>Web Scraping</span>
+                                <span class={style.techTag}>NLP</span>
+                                <span class={style.techTag}>Multilingual Assistants</span>
+                                <span class={style.techTag}>Voice-enabled Chatbots</span>
+                                <span class={style.techTag}>MCP (Model Context Protocol)</span>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class={style.storyCard + ' story-card'}>
+                <!-- <div class={style.storyCard + ' story-card'}>
                   <div class={style.cardHeader}>
                     <div class={style.cardIcon}><Rocket color='#D7ABC5' size={48} /></div>
                     <h3 class={style.cardTitle + ' card-title'}>Impact</h3>
@@ -122,7 +195,7 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
                     <p class={style.cardText + ' card-text'}>
                         My work has helped organizations increase efficiency by 40%, reduce costs by $2M+, and make data-driven decisions that transformed entire business strategies. I don't just analyze data—I create value.
                     </p>
-                </div>
+                </div> -->
 
                 <div class={style.personalInfo + ' personal-info'}>
                     <h3 class={style.infoTitle + ' info-title'}>Beyond the Data</h3>
@@ -166,30 +239,102 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
         <div class={style.experienceTimeline + ' experience-timeline'}>
             <h3 class={style.timelineTitle + ' timeline-title'}>Professional Journey</h3>
             <div class={style.timeline + ' timeline'}>
-                <div class={style.timelineItem + ' timeline-item'}>
-                    <div class={style.timelineDate + ' timeline-date'}>2024 - Present</div>
+                <!-- <div class={style.timelineItem + ' timeline-item'}>
+                    <div class={style.timelineDate + ' timeline-date'}>Sept 2025 - Present</div>
                     <div class={style.timelineContent + ' timeline-content'}>
-                        <h4 class={style.timelineRole}>Senior Data Scientist</h4>
-                        <span class={style.timelineCompany}>Tech Innovations Inc</span>
-                        <p class={style.timelineDesc}>Leading AI initiatives and building predictive models that serve 10M+ users daily</p>
+                        <h4 class={style.timelineRole}>Software Engineer Intern</h4>
+                        <span class={style.timelineCompany}>OWOW (USA)</span>
+                        <div class={style.timelineTech}>
+                            <span class={style.techTag}>Bug Fixing</span>
+                            <span class={style.techTag}>Software Development</span>
+                            <span class={style.techTag}>Team Collaboration</span>
+                        </div>
+                        <p class={style.timelineDesc}>• Working with a team of 5 developers on software bug resolution<br/>• Contributing to product stability and performance improvements<br/>• Collaborating on development workflows and code reviews</p>
                     </div>
-                </div>
+                </div> -->
                 
                 <div class={style.timelineItem + ' timeline-item'}>
-                    <div class={style.timelineDate + ' timeline-date'}>2022 - 2024</div>
+                    <div class={style.timelineDate + ' timeline-date'}>Oct 2024 - Present</div>
                     <div class={style.timelineContent + ' timeline-content'}>
                         <h4 class={style.timelineRole}>Data Scientist</h4>
-                        <span class={style.timelineCompany}>Analytics Pro</span>
-                        <p class={style.timelineDesc}>Developed ML pipelines and reduced model deployment time by 60%</p>
+                        <span class={style.timelineCompany}>Turing (USA)</span>
+                        <div class={style.timelineTech}>
+                            <span class={style.techTag}>Transformers</span>
+                            <span class={style.techTag}>FastAPI</span>
+                            <span class={style.techTag}>PostgreSQL</span>
+                            <span class={style.techTag}>Git</span>
+                            <span class={style.techTag}>Docker</span>
+                            <span class={style.techTag}>JavaScript</span>
+                        </div>
+                        <p class={style.timelineDesc}>• Leading team of 5 developers for ServiceNow, Apple, and Amazon clients<br/>• Enhanced LLM conversation quality by 35% through prompt engineering<br/>• Built scalable dev tools using Python, Postgres, and Neo4j</p>
                     </div>
                 </div>
                 
                 <div class={style.timelineItem + ' timeline-item'}>
-                    <div class={style.timelineDate + ' timeline-date'}>2020 - 2022</div>
+                    <div class={style.timelineDate + ' timeline-date'}>Jan 2025 - May 2025</div>
                     <div class={style.timelineContent + ' timeline-content'}>
-                        <h4 class={style.timelineRole}>Junior Data Analyst</h4>
-                        <span class={style.timelineCompany}>StartupXYZ</span>
-                        <p class={style.timelineDesc}>Built dashboards and automated reporting systems for C-level executives</p>
+                        <h4 class={style.timelineRole}>Research Trainee</h4>
+                        <span class={style.timelineCompany}>DRDO (India)</span>
+                        <div class={style.timelineTech}>
+                            <span class={style.techTag}>Python</span>
+                            <span class={style.techTag}>LangChain</span>
+                            <span class={style.techTag}>RAG</span>
+                            <span class={style.techTag}>Docker</span>
+                            <span class={style.techTag}>LLMs</span>
+                            <span class={style.techTag}>Web Scraping</span>
+                        </div>
+                        <p class={style.timelineDesc}>• Extracted 50,000+ data points via web scraping for AI knowledge base<br/>• Built AI customer support agent with RAG pipelines using LangChain<br/>• Deployed solutions via Docker with comprehensive logging systems</p>
+                    </div>
+                </div>
+                
+                <div class={style.timelineItem + ' timeline-item'}>
+                    <div class={style.timelineDate + ' timeline-date'}>July 2024 - Nov 2024</div>
+                    <div class={style.timelineContent + ' timeline-content'}>
+                        <h4 class={style.timelineRole}>Data Scientist</h4>
+                        <span class={style.timelineCompany}>Gradstem (USA)</span>
+                        <div class={style.timelineTech}>
+                            <span class={style.techTag}>Selenium</span>
+                            <span class={style.techTag}>NLP</span>
+                            <span class={style.techTag}>Puppeteer</span>
+                            <span class={style.techTag}>AI Agents</span>
+                            <span class={style.techTag}>MLOps</span>
+                            <span class={style.techTag}>LLMs</span>
+                            <span class={style.techTag}>RAG</span>
+                        </div>
+                        <p class={style.timelineDesc}>• Developed AI autonomous agents for form-filling and chatbot applications<br/>• Implemented NLP techniques for business process automation<br/>• Streamlined workflows reducing manual effort significantly</p>
+                    </div>
+                </div>
+                
+                <div class={style.timelineItem + ' timeline-item'}>
+                    <div class={style.timelineDate + ' timeline-date'}>Jun 2023 - Sept 2024</div>
+                    <div class={style.timelineContent + ' timeline-content'}>
+                        <h4 class={style.timelineRole}>Machine Learning Engineer</h4>
+                        <span class={style.timelineCompany}>Business Quant (India)</span>
+                        <div class={style.timelineTech}>
+                            <span class={style.techTag}>Python</span>
+                            <span class={style.techTag}>PaddleOCR</span>
+                            <span class={style.techTag}>NLTK</span>
+                            <span class={style.techTag}>NLP</span>
+                            <span class={style.techTag}>Machine Learning</span>
+                        </div>
+                        <p class={style.timelineDesc}>• Improved PaddleOCR extraction precision by 20% using NLTK and OpenAI<br/>• Applied custom NLP algorithms on financial reports<br/>• Automated metrics extraction cutting processing time by 30%</p>
+                    </div>
+                </div>
+                
+                <div class={style.timelineItem + ' timeline-item'}>
+                    <div class={style.timelineDate + ' timeline-date'}>April 2024 - July 2024</div>
+                    <div class={style.timelineContent + ' timeline-content'}>
+                        <h4 class={style.timelineRole}>AI/ML Developer</h4>
+                        <span class={style.timelineCompany}>Drifko (India)</span>
+                        <div class={style.timelineTech}>
+                            <span class={style.techTag}>Rasa</span>
+                            <span class={style.techTag}>Chainlit</span>
+                            <span class={style.techTag}>NLP</span>
+                            <span class={style.techTag}>Machine Learning</span>
+                            <span class={style.techTag}>LLMs</span>
+                            <span class={style.techTag}>Docker</span>
+                        </div>
+                        <p class={style.timelineDesc}>• Designed chatbots using Rasa and Chainlit frameworks<br/>• Leveraged large language models for natural user interactions<br/>• Implemented conversational AI solutions for business automation</p>
                     </div>
                 </div>
             </div>
