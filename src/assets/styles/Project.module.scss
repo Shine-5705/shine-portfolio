@@ -142,20 +142,17 @@
         width: 350px;
         height: 450px;
         flex-shrink: 0;
-        perspective: 1000px;
 
         .cardInner {
             position: relative;
             width: 100%;
             height: 100%;
-            transform-style: preserve-3d;
         }
 
         .cardFront, .cardBack {
-            position: absolute;
+            position: relative;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden;
             border-radius: 20px;
             overflow: hidden;
             background: rgba(255, 255, 255, 0.08);
@@ -244,7 +241,6 @@
         }
 
         .cardBack {
-            transform: rotateY(180deg);
 
             .projectDetails {
                 padding: 28px;

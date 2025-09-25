@@ -170,31 +170,6 @@ const projects = [
                 {projects.concat(projects).map((project, index) => (
                     <div class={`${style.projectCard} project-card`}>
                         <div class={style.cardInner}>
-                            <div class={`${style.cardFront} card-front`}>
-                                <div class={style.projectImage}>
-                                    <Image
-                                        src={project.image}
-                                        alt={project.title}
-                                        width={350}
-                                        height={315}
-                                        format="webp"
-                                        quality={80}
-                                    />
-                                    <div class={style.imageOverlay}></div>
-                                </div>
-                                <div class={style.projectInfo}>
-                                    <div class={style.projectHeader}>
-                                        <h3 class={style.projectTitle}>{project.title}</h3>
-                                        <div class={style.projectStats}>
-                                            <span class={style.stars}>⭐ {project.stars}</span>
-                                            {project.language && (
-                                                <span class={style.language}>{project.language}</span>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class={`${style.cardBack} card-back`}>
                                 <div class={style.projectDetails}>
                                     <div class={style.projectHeader}>
@@ -469,22 +444,7 @@ const projects = [
             gsap.to('.marquee-content', { scale: 1, duration: 0.3, ease: 'power2.out' });
         });
 
-        cards.forEach(card => {
-            const front = card.querySelector('.card-front') as HTMLElement;
-            const back = card.querySelector('.card-back') as HTMLElement;
-
-            gsap.set(back, { rotationY: 180 });
-
-            card.addEventListener('mouseenter', () => {
-                gsap.to(front, { rotationY: -180, duration: 0.6, ease: 'power2.inOut' });
-                gsap.to(back, { rotationY: 0, duration: 0.6, ease: 'power2.inOut' });
-            });
-
-            card.addEventListener('mouseleave', () => {
-                gsap.to(front, { rotationY: 0, duration: 0.6, ease: 'power2.inOut' });
-                gsap.to(back, { rotationY: 180, duration: 0.6, ease: 'power2.inOut' });
-            });
-        });
+        // Removed flip animation - showing back side directly
 
         gsap.timeline({
             scrollTrigger: {
