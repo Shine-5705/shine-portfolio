@@ -446,39 +446,39 @@
         }
       }
 
-      .scrollIndicator {
+      .socialIcons {
         display: flex;
-        flex-direction: column;
+        gap: 20px;
         align-items: center;
-        gap: 10px; // Reduced gap
+        justify-content: center;
 
-        .scrollLine {
-          width: 2px;
-          height: 40px;
-          background: linear-gradient(to bottom, colour.$rose-pink, transparent);
-          position: relative;
-          border-radius: 1px;
-
-          &::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: -4px;
-            width: 8px;
-            height: 8px;
-            border-right: 2px solid colour.$rose-pink;
-            border-bottom: 2px solid colour.$rose-pink;
-            transform: rotate(45deg);
-          }
-        }
-
-        .scrollText {
+        .socialIcon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(215, 171, 197, 0.3);
+          backdrop-filter: blur(10px);
           color: colour.$soft-gray;
-          @include font.body-small;
-          font-weight: font.$font-weight-light;
-          letter-spacing: 1.5px;
-          text-transform: uppercase;
-          opacity: 0.8;
+          text-decoration: none;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          
+          svg {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s ease;
+          }
+
+          &:hover {
+            background: colour.$rose-pink;
+            border-color: colour.$rose-pink;
+            color: colour.$text-inverse;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(215, 171, 197, 0.4);
+          }
         }
       }
     }
@@ -536,6 +536,17 @@
         gap: 12px;
         .primaryBtn, .secondaryBtn { width: 180px; padding: 12px 24px; font-size: font.$font-size-sm; }
       }
+      .socialIcons {
+        gap: 16px;
+        .socialIcon {
+          width: 44px;
+          height: 44px;
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
     }
   }
 }
@@ -568,6 +579,17 @@
         flex-direction: column;
         gap: 10px;
         .primaryBtn, .secondaryBtn { width: 140px; padding: 8px 16px; font-size: font.$font-size-xs; }
+      }
+      .socialIcons {
+        gap: 12px;
+        .socialIcon {
+          width: 40px;
+          height: 40px;
+          svg {
+            width: 18px;
+            height: 18px;
+          }
+        }
       }
     }
   }
