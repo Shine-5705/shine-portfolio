@@ -125,6 +125,7 @@
         padding: 40px 0;
         cursor: grab;
         user-select: none;
+        touch-action: pan-y;
 
         &:active {
             cursor: grabbing;
@@ -133,7 +134,8 @@
         .marqueeContent {
             display: flex;
             gap: 30px;
-            width: calc(200% + 30px);
+            width: max-content;
+            will-change: transform;
         }
     }
 

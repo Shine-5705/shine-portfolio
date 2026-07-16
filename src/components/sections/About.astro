@@ -37,8 +37,8 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
                             <span class={style.statLabel}>Projects</span>
                         </div>
                         <div class={style.stat + ' stat-2'}>
-                            <span class={style.statNumber}>7</span>
-                            <span class={style.statLabel}>Awards</span>
+                            <span class={style.statNumber}>9+</span>
+                            <span class={style.statLabel}>Hackathon Wins</span>
                         </div>
                         <div class={style.stat + ' stat-3'}>
                             <span class={style.statNumber}>99%</span>
@@ -100,7 +100,7 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
                     <h3 class={style.cardTitle + ' card-title'}>My Journey</h3>
                   </div>
                     <p class={style.cardText + ' card-text'}>
-                        From a curious mathematics student to a leading data scientist, my journey has been driven by an insatiable appetite for uncovering patterns in chaos. I believe data tells stories that can change the world.
+                        From mathematics and research to shipping production AI systems at scale — I design, build, and deploy full-stack applications and multi-agent LLM architectures for enterprise clients across the US, Japan, and India. I turn complex problems into reliable products.
                     </p>
                 </div>
 
@@ -116,6 +116,9 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
                                 <span class={style.techTag}>Python</span>
                                 <span class={style.techTag}>C/C++</span>
                                 <span class={style.techTag}>JavaScript/TypeScript</span>
+                                <span class={style.techTag}>SQL</span>
+                                <span class={style.techTag}>Go</span>
+                                <span class={style.techTag}>Bash</span>
                             </div>
                         </div>
                         
@@ -129,6 +132,7 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
                                 <span class={style.techTag}>Transformers</span>
                                 <span class={style.techTag}>Hugging Face</span>
                                 <span class={style.techTag}>Generative AI</span>
+                                <span class={style.techTag}>LLMs</span>
                                 <span class={style.techTag}>RAG pipelines</span>
                                 <span class={style.techTag}>LangChain</span>
                                 <span class={style.techTag}>LangGraph</span>
@@ -138,6 +142,10 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
                                 <span class={style.techTag}>NEAT</span>
                                 <span class={style.techTag}>Applied AI</span>
                                 <span class={style.techTag}>MLOps</span>
+                                <span class={style.techTag}>RLHF / SFT</span>
+                                <span class={style.techTag}>LLM Evaluation</span>
+                                <span class={style.techTag}>Red-Teaming</span>
+                                <span class={style.techTag}>W&B</span>
                             </div>
                         </div>
                         
@@ -149,6 +157,9 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
                                 <span class={style.techTag}>React</span>
                                 <span class={style.techTag}>Next.js</span>
                                 <span class={style.techTag}>Express.js</span>
+                                <span class={style.techTag}>REST APIs</span>
+                                <span class={style.techTag}>OAuth / JWT</span>
+                                <span class={style.techTag}>Internal Dashboards</span>
                             </div>
                         </div>
                         
@@ -159,6 +170,8 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
                                 <span class={style.techTag}>MySQL</span>
                                 <span class={style.techTag}>MongoDB</span>
                                 <span class={style.techTag}>Neo4j</span>
+                                <span class={style.techTag}>Redis</span>
+                                <span class={style.techTag}>Snowflake</span>
                             </div>
                         </div>
                         
@@ -166,10 +179,13 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
                             <h4 class={style.categoryTitle}>Cloud & DevOps</h4>
                             <div class={style.techTags}>
                                 <span class={style.techTag}>AWS (EC2, Lambda)</span>
+                                <span class={style.techTag}>AWS SageMaker</span>
                                 <span class={style.techTag}>GCP</span>
                                 <span class={style.techTag}>Docker</span>
                                 <span class={style.techTag}>Kubernetes</span>
-
+                                <span class={style.techTag}>CI/CD (GitHub Actions)</span>
+                                <span class={style.techTag}>Infrastructure as Code</span>
+                                <span class={style.techTag}>Monitoring & Logging</span>
                             </div>
                         </div>
                         
@@ -177,11 +193,15 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
                             <h4 class={style.categoryTitle}>Other Tools & Specializations</h4>
                             <div class={style.techTags}>
                                 <span class={style.techTag}>Web Scraping</span>
+                                <span class={style.techTag}>ETL Pipelines</span>
+                                <span class={style.techTag}>Eval Harnesses</span>
                                 <span class={style.techTag}>NLP</span>
                                 <span class={style.techTag}>Multilingual Assistants</span>
                                 <span class={style.techTag}>Voice-enabled Chatbots</span>
                                 <span class={style.techTag}>MCP (Model Context Protocol)</span>
-
+                                <span class={style.techTag}>Claude Code</span>
+                                <span class={style.techTag}>GitHub Copilot</span>
+                                <span class={style.techTag}>Cursor</span>
                             </div>
                         </div>
                     </div>
@@ -239,63 +259,125 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
         <div class={style.experienceTimeline + ' experience-timeline'}>
             <h3 class={style.timelineTitle + ' timeline-title'}>Professional Journey</h3>
             <div class={style.timeline + ' timeline'}>
-                <!-- <div class={style.timelineItem + ' timeline-item'}>
-                    <div class={style.timelineDate + ' timeline-date'}>Sept 2025 - Present</div>
-                    <div class={style.timelineContent + ' timeline-content'}>
-                        <h4 class={style.timelineRole}>Software Engineer Intern</h4>
-                        <span class={style.timelineCompany}>OWOW (USA)</span>
-                        <div class={style.timelineTech}>
-                            <span class={style.techTag}>Bug Fixing</span>
-                            <span class={style.techTag}>Software Development</span>
-                            <span class={style.techTag}>Team Collaboration</span>
-                        </div>
-                        <p class={style.timelineDesc}>• Working with a team of 5 developers on software bug resolution<br/>• Contributing to product stability and performance improvements<br/>• Collaborating on development workflows and code reviews</p>
-                    </div>
-                </div> -->
-                
                 <div class={style.timelineItem + ' timeline-item'}>
-                    <div class={style.timelineDate + ' timeline-date'}>Oct 2024 - Present</div>
+                    <div class={style.timelineDate + ' timeline-date'}>Apr 2026 – Present</div>
+                    <div class={style.timelineContent + ' timeline-content'}>
+                        <h4 class={style.timelineRole}>Full-Stack Developer – Founder's Office</h4>
+                        <span class={style.timelineCompany}>Gnani.ai · Bengaluru, India</span>
+                        <div class={style.timelineTech}>
+                            <span class={style.techTag}>React</span>
+                            <span class={style.techTag}>Next.js</span>
+                            <span class={style.techTag}>FastAPI</span>
+                            <span class={style.techTag}>Auth</span>
+                            <span class={style.techTag}>Cloud Deployment</span>
+                        </div>
+                        <p class={style.timelineDesc}>• Solely designed, built, and deployed 3 production full-stack web applications in 2 months — customer-facing portals and voice-agent products<br/>• Owned frontend (React/Next.js), backend APIs, auth, and cloud deployment end-to-end<br/>• Delivered directly to US and Japanese enterprise clients, iterating on feedback to ship quickly and reliably</p>
+                    </div>
+                </div>
+
+                <div class={style.timelineItem + ' timeline-item'}>
+                    <div class={style.timelineDate + ' timeline-date'}>Aug 2025 – Apr 2026</div>
+                    <div class={style.timelineContent + ' timeline-content'}>
+                        <h4 class={style.timelineRole}>Founder</h4>
+                        <span class={style.timelineCompany}>Chatverse.io</span>
+                        <div class={style.timelineTech}>
+                            <span class={style.techTag}>React</span>
+                            <span class={style.techTag}>LangGraph</span>
+                            <span class={style.techTag}>FastAPI</span>
+                            <span class={style.techTag}>AI Agents</span>
+                            <span class={style.techTag}>AWS</span>
+                            <span class={style.techTag}>Supabase</span>
+                        </div>
+                        <p class={style.timelineDesc}>• Built Chatverse, an AI no-code automation platform that turns plain English into real actions across Instagram, Gmail, Calendar, HubSpot, Notion, and 15+ tools<br/>• Shipped the full stack with 500+ active beta users and 3,500+ live automations — React + Tailwind on Firebase, backend on Google Cloud</p>
+                    </div>
+                </div>
+
+                <div class={style.timelineItem + ' timeline-item'}>
+                    <div class={style.timelineDate + ' timeline-date'}>Jan 2026 – Apr 2026</div>
+                    <div class={style.timelineContent + ' timeline-content'}>
+                        <h4 class={style.timelineRole}>AI Engineer (reporting to CTO)</h4>
+                        <span class={style.timelineCompany}>Valura.ai · Bengaluru, India</span>
+                        <div class={style.timelineTech}>
+                            <span class={style.techTag}>Multi-Agent LLMs</span>
+                            <span class={style.techTag}>Guardrails</span>
+                            <span class={style.techTag}>Tool-Use</span>
+                            <span class={style.techTag}>Eval Hooks</span>
+                            <span class={style.techTag}>RAG</span>
+                        </div>
+                        <p class={style.timelineDesc}>• Designed and shipped a production multi-agent LLM architecture with guardrails, tool-use constraints, memory, and evaluation hooks — cutting unsafe responses<br/>• Built evaluation and monitoring tooling to diagnose agent failure modes under adversarial and out-of-distribution queries<br/>• Improved grounding using user history and live external data</p>
+                    </div>
+                </div>
+
+                <div class={style.timelineItem + ' timeline-item'}>
+                    <div class={style.timelineDate + ' timeline-date'}>Oct 2024 – Jan 2026</div>
                     <div class={style.timelineContent + ' timeline-content'}>
                         <h4 class={style.timelineRole}>Data Scientist</h4>
-                        <span class={style.timelineCompany}>Turing (USA)</span>
+                        <span class={style.timelineCompany}>Turing · USA (Remote)</span>
                         <div class={style.timelineTech}>
                             <span class={style.techTag}>Transformers</span>
                             <span class={style.techTag}>FastAPI</span>
                             <span class={style.techTag}>PostgreSQL</span>
-                            <span class={style.techTag}>Git</span>
+                            <span class={style.techTag}>Neo4j</span>
                             <span class={style.techTag}>Docker</span>
-                            <span class={style.techTag}>JavaScript</span>
                         </div>
-                        <p class={style.timelineDesc}>• Leading team of 5 developers for ServiceNow, Apple, and Amazon clients<br/>• Enhanced LLM conversation quality by 35% through prompt engineering<br/>• Built scalable dev tools using Python, Postgres, and Neo4j</p>
+                        <p class={style.timelineDesc}>• Led team of 5 developers for ServiceNow, Apple, and Amazon clients<br/>• Enhanced LLM conversation quality by 35% through prompt engineering<br/>• Built scalable dev tools using Python, Postgres, and Neo4j</p>
                     </div>
                 </div>
-                
+
                 <div class={style.timelineItem + ' timeline-item'}>
-                    <div class={style.timelineDate + ' timeline-date'}>Jan 2025 - May 2025</div>
+                    <div class={style.timelineDate + ' timeline-date'}>Sep 2025 – Dec 2025</div>
+                    <div class={style.timelineContent + ' timeline-content'}>
+                        <h4 class={style.timelineRole}>AI Lead – End-to-End AI Department</h4>
+                        <span class={style.timelineCompany}>OWOW · United States (Remote)</span>
+                        <div class={style.timelineTech}>
+                            <span class={style.techTag}>AWS SageMaker</span>
+                            <span class={style.techTag}>IDP Pipelines</span>
+                            <span class={style.techTag}>Chatbots</span>
+                            <span class={style.techTag}>Email Automation</span>
+                        </div>
+                        <p class={style.timelineDesc}>• Led the end-to-end AI department — building and maintaining AI email automation, chatbots, and IDP pipelines<br/>• Designed, deployed, and managed scalable AI models on AWS SageMaker, exposed as production-ready APIs</p>
+                    </div>
+                </div>
+
+                <div class={style.timelineItem + ' timeline-item'}>
+                    <div class={style.timelineDate + ' timeline-date'}>Sep 2025 – Nov 2025</div>
+                    <div class={style.timelineContent + ' timeline-content'}>
+                        <h4 class={style.timelineRole}>AI Engineer Intern</h4>
+                        <span class={style.timelineCompany}>Valura.ai · Bengaluru, India</span>
+                        <div class={style.timelineTech}>
+                            <span class={style.techTag}>LLMs</span>
+                            <span class={style.techTag}>Python</span>
+                            <span class={style.techTag}>AI Agents</span>
+                        </div>
+                        <p class={style.timelineDesc}>• Contributed to production AI systems and agent pipelines under the engineering team<br/>• Gained hands-on experience with LLM integration, evaluation, and deployment workflows</p>
+                    </div>
+                </div>
+
+                <div class={style.timelineItem + ' timeline-item'}>
+                    <div class={style.timelineDate + ' timeline-date'}>Jan 2025 – May 2025</div>
                     <div class={style.timelineContent + ' timeline-content'}>
                         <h4 class={style.timelineRole}>Research Trainee</h4>
-                        <span class={style.timelineCompany}>DRDO (India)</span>
+                        <span class={style.timelineCompany}>Defence Research and Development Organisation · Delhi, India</span>
                         <div class={style.timelineTech}>
-                            <span class={style.techTag}>Python</span>
-                            <span class={style.techTag}>LangChain</span>
                             <span class={style.techTag}>RAG</span>
+                            <span class={style.techTag}>BERT</span>
+                            <span class={style.techTag}>LLaMA</span>
                             <span class={style.techTag}>Docker</span>
-                            <span class={style.techTag}>LLMs</span>
                             <span class={style.techTag}>Web Scraping</span>
+                            <span class={style.techTag}>CI/CD</span>
                         </div>
-                        <p class={style.timelineDesc}>• Extracted 50,000+ data points via web scraping for AI knowledge base<br/>• Built AI customer support agent with RAG pipelines using LangChain<br/>• Deployed solutions via Docker with comprehensive logging systems</p>
+                        <p class={style.timelineDesc}>• Processed 50,000+ unstructured datasets via automated web scraping + RAG pipelines to build a domain-specific AI<br/>• Fine-tuned BERT and LLaMA for domain-specific document summarization<br/>• Deployed Dockerized AI microservices with logging, monitoring, and CI/CD integration</p>
                     </div>
                 </div>
                 
                 <div class={style.timelineItem + ' timeline-item'}>
-                    <div class={style.timelineDate + ' timeline-date'}>July 2024 - Nov 2024</div>
+                    <div class={style.timelineDate + ' timeline-date'}>July 2024 – Nov 2024</div>
                     <div class={style.timelineContent + ' timeline-content'}>
                         <h4 class={style.timelineRole}>Data Scientist</h4>
-                        <span class={style.timelineCompany}>Gradstem (USA)</span>
+                        <span class={style.timelineCompany}>Gradstem · USA (Remote)</span>
                         <div class={style.timelineTech}>
                             <span class={style.techTag}>Selenium</span>
                             <span class={style.techTag}>NLP</span>
-                            <span class={style.techTag}>Puppeteer</span>
                             <span class={style.techTag}>AI Agents</span>
                             <span class={style.techTag}>MLOps</span>
                             <span class={style.techTag}>LLMs</span>
@@ -306,31 +388,29 @@ import { Target, Lightbulb, Rocket, Palette, Book, Earth, Coffee } from '@lucide
                 </div>
                 
                 <div class={style.timelineItem + ' timeline-item'}>
-                    <div class={style.timelineDate + ' timeline-date'}>Jun 2023 - Sept 2024</div>
+                    <div class={style.timelineDate + ' timeline-date'}>Jun 2023 – Sept 2024</div>
                     <div class={style.timelineContent + ' timeline-content'}>
                         <h4 class={style.timelineRole}>Machine Learning Engineer</h4>
-                        <span class={style.timelineCompany}>Business Quant (India)</span>
+                        <span class={style.timelineCompany}>Business Quant · India</span>
                         <div class={style.timelineTech}>
                             <span class={style.techTag}>Python</span>
                             <span class={style.techTag}>PaddleOCR</span>
                             <span class={style.techTag}>NLTK</span>
                             <span class={style.techTag}>NLP</span>
-                            <span class={style.techTag}>Machine Learning</span>
                         </div>
                         <p class={style.timelineDesc}>• Improved PaddleOCR extraction precision by 20% using NLTK and OpenAI<br/>• Applied custom NLP algorithms on financial reports<br/>• Automated metrics extraction cutting processing time by 30%</p>
                     </div>
                 </div>
                 
                 <div class={style.timelineItem + ' timeline-item'}>
-                    <div class={style.timelineDate + ' timeline-date'}>April 2024 - July 2024</div>
+                    <div class={style.timelineDate + ' timeline-date'}>April 2024 – July 2024</div>
                     <div class={style.timelineContent + ' timeline-content'}>
                         <h4 class={style.timelineRole}>AI/ML Developer</h4>
-                        <span class={style.timelineCompany}>Drifko (India)</span>
+                        <span class={style.timelineCompany}>Drifko · India</span>
                         <div class={style.timelineTech}>
                             <span class={style.techTag}>Rasa</span>
                             <span class={style.techTag}>Chainlit</span>
                             <span class={style.techTag}>NLP</span>
-                            <span class={style.techTag}>Machine Learning</span>
                             <span class={style.techTag}>LLMs</span>
                             <span class={style.techTag}>Docker</span>
                         </div>

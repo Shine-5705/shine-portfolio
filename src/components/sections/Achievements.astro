@@ -1,0 +1,162 @@
+---
+import style from '../../assets/styles/Achievements.module.scss';
+import { Trophy, BookOpen, ExternalLink } from '@lucide/astro';
+
+const publications = [
+  {
+    title: "Compute-Aware Mixture-of-Agents: Verifier-Gated Adaptive Aggregation under a Fixed Token Budget",
+    authors: "Gupta, S. et al.",
+    venue: "ICML 2026 SCALE Workshop, Seoul",
+    date: "Jul 2026",
+    status: "Accepted",
+  },
+  {
+    title: "Tool-Existence Hallucination Is Tier-Dependent and Intra-Family Non-Monotonic on BFCL Multi-Turn",
+    authors: "Gupta, S. et al.",
+    venue: "ICML 2026 SCALE Workshop, Seoul",
+    date: "Jul 2026",
+    status: "Accepted",
+  },
+  {
+    title: "Character-Level Language Modeling",
+    authors: "Gupta, S. et al.",
+    venue: "ICASET-2026",
+    date: "2026",
+    status: "Accepted",
+  },
+];
+
+const hackathons = [
+  {
+    title: "UCWS Singapore Hackathon — Winner",
+    event: "SuperAI 2026 · NEXT Hackathon · UCWS Singapore",
+    date: "2026",
+    badge: "🏆 Winner",
+    excerpt: "Back-to-back hackathons in Singapore: selected as 1 of 200 builders worldwide for the NEXT Hackathon at SuperAI 2026, then took that momentum into the UCWS Singapore Hackathon — a global open-source event with 150+ projects. Our team placed in the top 20 and won. Alongside co-founder S Akash, we built re-forge: a hardened operating procedure for coding agents (Claude Code, Cursor, Codex) that turns a single agent into a self-evolving team of specialists with adversarial gates, eval verification, durable memory, and evidence on disk for every decision.",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7475268078298112001/",
+  },
+  {
+    title: "Hack for the Green Bharat — Best Project Award",
+    event: "Microsoft Office · Pathway Hack × Tech Masters India",
+    date: "Mar 13",
+    badge: "🏆 Best Project",
+    excerpt: "Won the Best Project Award at Hack for the Green Bharat at Microsoft Office. Pitched ChatVerse — our AI-powered automation platform that lets users automate anything across social media and apps using plain English — and received an internship offer on the spot. An incredible day of innovation, sustainability, and connections with passionate builders across India.",
+    link: "http://linkedin.com/feed/update/urn:li:activity:7439776605562077184/",
+  },
+  {
+    title: "Meesho ScriptedByHer Hackathon — Winner",
+    event: "Meesho HQ, Bangalore · Team CodeShine (solo)",
+    date: "2025",
+    badge: "🏆 Winner",
+    excerpt: "Among 50,000+ participants, Team CodeShine — a one-member team — emerged as a winner in Meesho's ScriptedByHer Hackathon. From a spark of an idea to presenting at Meesho HQ in Bangalore, this journey proved that even a solo team can shine bright with perseverance and passion.",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7359515286791729152/",
+  },
+  {
+    title: "5G & Beyond Hackathon — Top Winner (India)",
+    event: "National · 5G & Beyond Hackathon",
+    date: "Dec 2024",
+    badge: "🏆 Top Winner",
+    excerpt: "After building an AR/VR + ML prototype that peers called too ambitious, I submitted to the 5G & Beyond Hackathon and heard nothing for months. On Dec 30, an email said I was one of the top winners across India — I thought it was a scam. Lesson learned: back yourself, even when no one else does.",
+    link: "https://www.linkedin.com/posts/shine-gupta-62b22b264_5gandbeyondhackathon-innovation-machinelearning-activity-7314148995101073409-x7Pn",
+  },
+  {
+    title: "Amazon ML Challenge 2024 — AIR 87",
+    event: "Amazon ML Challenge · Unstop",
+    date: "2024",
+    badge: "🥇 AIR 87 / 75,000+",
+    excerpt: "Secured All India Rank 87 out of over 75,000 participants in the Amazon ML Challenge 2024 on Unstop — competing at national scale in machine learning and OCR-focused problem solving.",
+    link: "https://www.linkedin.com/posts/neha-tomar-5ab69726a_ai-machinelearning-ocr-ugcPost-7244372293588574208-TP08",
+  },
+];
+---
+
+<section id="achievements" class={`${style.achievementsContainer} achievements-container`}>
+  <div class={style.achievementsContent}>
+    <div class={style.sectionHeader}>
+      <span class={`${style.sectionTag} section-tag`}>Recognition</span>
+      <h2 class={`${style.sectionTitle} section-title`}>Publications & Hackathons</h2>
+      <div class={`${style.titleUnderline} title-underline`}></div>
+      <p class={style.sectionSubtitle}>
+        9+ hackathon wins and growing research footprint — a glimpse of the highlights.
+      </p>
+    </div>
+
+    <div class={style.publicationsBlock}>
+      <div class={style.blockHeader}>
+        <BookOpen color="#D7ABC5" size={28} />
+        <h3 class={style.blockTitle}>Publications</h3>
+        <a
+          href="https://scholar.google.com/citations?user=kx3_tLYAAAAJ&hl=en"
+          target="_blank"
+          rel="noopener noreferrer"
+          class={style.scholarLink}
+        >
+          Google Scholar
+          <ExternalLink size={14} />
+        </a>
+      </div>
+      <div class={style.publicationsGrid}>
+        {publications.map((pub) => (
+          <article class={`${style.publicationCard} publication-card`}>
+            <span class={style.pubStatus}>{pub.status}</span>
+            <h4 class={style.pubTitle}>{pub.title}</h4>
+            <p class={style.pubMeta}>
+              {pub.authors} · {pub.venue} · {pub.date}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class={style.hackathonsBlock}>
+      <div class={style.blockHeader}>
+        <Trophy color="#D7ABC5" size={28} />
+        <h3 class={style.blockTitle}>Hackathon Highlights</h3>
+      </div>
+      <div class={style.hackathonsGrid}>
+        {hackathons.map((hack) => (
+          <article class={`${style.hackathonCard} hackathon-card`}>
+            <div class={style.hackHeader}>
+              <span class={style.hackBadge}>{hack.badge}</span>
+              <span class={style.hackDate}>{hack.date}</span>
+            </div>
+            <h4 class={style.hackTitle}>{hack.title}</h4>
+            <p class={style.hackEvent}>{hack.event}</p>
+            <p class={style.hackExcerpt}>{hack.excerpt}</p>
+            <a
+              href={hack.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={style.hackLink}
+            >
+              Read on LinkedIn
+              <ExternalLink size={14} />
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '.achievements-container',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
+    })
+      .fromTo('.achievements-container .section-tag', { y: 30, opacity: 0 }, { duration: 0.8, y: 0, opacity: 1, ease: 'power3.out' })
+      .fromTo('.achievements-container .section-title', { y: 50, opacity: 0 }, { duration: 1, y: 0, opacity: 1, ease: 'power3.out' }, '-=0.6')
+      .fromTo('.achievements-container .title-underline', { scaleX: 0 }, { duration: 1, scaleX: 1, ease: 'power3.out' }, '-=0.4')
+      .fromTo('.publication-card', { y: 40, opacity: 0 }, { duration: 0.8, y: 0, opacity: 1, stagger: 0.15, ease: 'power3.out' }, '-=0.3')
+      .fromTo('.hackathon-card', { y: 50, opacity: 0 }, { duration: 0.8, y: 0, opacity: 1, stagger: 0.12, ease: 'power3.out' }, '-=0.5');
+  });
+</script>

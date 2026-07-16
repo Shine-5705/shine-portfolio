@@ -4,14 +4,35 @@ import { Image } from 'astro:assets';
 
 const projects = [
     {
+        id: 12,
+        title: "AI Mathematical Olympiad Solver",
+        description: "Competition-level Generative AI math reasoning system by fine-tuning 7B LLMs (Qwen2.5-Math, NuminaMath) using QLoRA (4-bit) and LoRA adapters. Integrated SymPy-based symbolic verification into inference to prune invalid reasoning paths, trained on 50K+ problems from a 1.7M OpenMathReasoning Dataset.",
+        github: "https://github.com/Shine-5705",
+        image: "/og-image.jpeg",
+        topics: ["PyTorch", "Hugging Face", "PEFT (LoRA)", "LLaMA-3-8B", "QLoRA", "SymPy", "Mixed Precision"],
+        stars: 0,
+        language: "Python"
+    },
+    {
+        id: 13,
+        title: "Chatverse",
+        description: "AI no-code automation platform that turns plain English into real actions across Instagram, Gmail, Calendar, HubSpot, Notion, and 15+ tools using a custom agentic engine. 500+ active beta users, 3,500+ live automations.",
+        github: "https://github.com/Shine-5705",
+        live: "https://chatverse.io/",
+        image: "/og-image.jpeg",
+        topics: ["React", "LangGraph", "FastAPI", "AI Agents", "AWS", "Supabase", "Firebase", "GCP"],
+        stars: 0,
+        language: "TypeScript"
+    },
+    {
         id: 1,
         title: "CareMate",
-        description: "AI-Powered Chronic Disease Monitoring & Remote Care system using health sensors + LLMs to generate personalized health insights",
+        description: "Multilingual LLM-powered healthcare assistant using prompt engineering and real-time clinical reasoning for symptom triage and personalized health guidance. RAG pipeline integrating 5+ health parameters reduced hallucinations by 30% through contextual medical retrieval.",
         github: "https://github.com/Shine-5705/CareMate-AI-Powered-Chronic-Disease-Monitoring-Remote-Care",
         demo: "https://studio.youtube.com/video/BxexK93VRkA/edit",
         live: "https://caremate0507.netlify.app/",
         image: "/og-image.jpeg",
-        topics: ["OpenCV", "Raspberry Pi", "Arduino", "TTS APIs", "LLMs", "Transformers", "Computer Vision", "Python", "Flask", "Docker"],
+        topics: ["React", "TypeScript", "Flask", "PostgreSQL", "RAG", "TensorFlow.js", "AssemblyAI"],
         stars: 15,
         language: "Python"
     },
@@ -249,25 +270,26 @@ const projects = [
     document.addEventListener('DOMContentLoaded', async () => {
         const animations = await createAnimations();
         const marquee = document.querySelector('.projects-marquee') as HTMLElement;
-        const cards = document.querySelectorAll('.project-card');
+        const marqueeContent = document.querySelector('.marquee-content') as HTMLElement;
         const floatingIcons = document.querySelectorAll('[data-icon-id]') as NodeListOf<HTMLElement>;
+
+        if (!marquee || !marqueeContent) return;
 
         floatingIcons.forEach((icon, index) => {
             const iconId = parseInt(icon.dataset.iconId || '0');
             animations.addIcon(icon, iconId);
 
             const positions = [
-                { x: '15%', y: '20%' },   // top-left area
-                { x: '85%', y: '25%' },   // top-right area  
-                { x: '10%', y: '50%' },   // middle-left
-                { x: '90%', y: '45%' },   // middle-right
-                { x: '50%', y: '75%' }    // bottom-center
+                { x: '15%', y: '20%' },
+                { x: '85%', y: '25%' },
+                { x: '10%', y: '50%' },
+                { x: '90%', y: '45%' },
+                { x: '50%', y: '75%' }
             ];
 
             const position = positions[index] || positions[0];
-            
-            const randomX = (Math.random() - 0.5) * 20; // ±10% variation
-            const randomY = (Math.random() - 0.5) * 20; // ±10% variation
+            const randomX = (Math.random() - 0.5) * 20;
+            const randomY = (Math.random() - 0.5) * 20;
 
             gsap.set(icon, {
                 left: `calc(${position.x} + ${randomX}%)`,
@@ -282,6 +304,7 @@ const projects = [
 
         window.addEventListener('resize', () => {
             animations.handleResize();
+            refreshMarqueeMetrics();
         });
 
         ScrollTrigger.create({
@@ -293,158 +316,160 @@ const projects = [
             }
         });
 
-        const marqueeAnimation = gsap.to('.marquee-content', {
-            x: '-50%',
-            duration: 40,
-            ease: 'none',
-            repeat: -1
-        });
-
-        let isScrolling = false;
-        let scrollTimeout: number | undefined;
+        let loopWidth = 0;
         let isDragging = false;
+        let isHovered = false;
         let startX = 0;
         let dragStartPos = 0;
+        let marqueeTween: gsap.core.Tween | null = null;
 
-        // Get the actual width of the marquee content for proper infinite scroll
-        const getMarqueeWidth = () => {
-            const marqueeContent = document.querySelector('.marquee-content') as HTMLElement;
-            return marqueeContent ? marqueeContent.scrollWidth / 2 : window.innerWidth; // Divide by 2 because content is duplicated
+        const getLoopWidth = () => marqueeContent.scrollWidth / 2;
+
+        const wrapX = (x: number) => {
+            if (!loopWidth) return x;
+            let wrapped = x % loopWidth;
+            if (wrapped > 0) wrapped -= loopWidth;
+            return wrapped;
         };
 
-        // Function to normalize position for infinite scroll
-        const normalizePosition = (x: number) => {
-            const marqueeWidth = getMarqueeWidth();
-            // Keep the position within one full cycle (0 to -marqueeWidth)
-            while (x > 0) x -= marqueeWidth;
-            while (x < -marqueeWidth) x += marqueeWidth;
-            return x;
+        const getCurrentX = () => gsap.getProperty(marqueeContent, 'x') as number;
+
+        const setMarqueeX = (x: number) => {
+            gsap.set(marqueeContent, { x: wrapX(x) });
         };
 
-        marquee?.addEventListener('wheel', (e) => {
-            e.preventDefault();
-
-            if (!isScrolling) {
-                marqueeAnimation.pause();
-                isScrolling = true;
+        const refreshMarqueeMetrics = () => {
+            loopWidth = getLoopWidth();
+            if (marqueeTween) {
+                pauseAutoScroll();
+                syncAutoScrollToPosition();
+                startAutoScroll();
             }
+        };
 
-            if (scrollTimeout) clearTimeout(scrollTimeout);
+        const startAutoScroll = () => {
+            if (marqueeTween) marqueeTween.kill();
 
-            const currentX = gsap.getProperty('.marquee-content', 'x') as number;
-            let newX = currentX - (e.deltaY * 2);
-            
-            // Normalize position for infinite scroll
-            newX = normalizePosition(newX);
+            const current = wrapX(getCurrentX());
+            gsap.set(marqueeContent, { x: current });
 
-            gsap.set('.marquee-content', { x: newX });
+            marqueeTween = gsap.to(marqueeContent, {
+                x: current - loopWidth,
+                duration: 40 * (1 - Math.abs(current) / loopWidth || 1),
+                ease: 'none',
+                onComplete: () => {
+                    gsap.set(marqueeContent, { x: 0 });
+                    marqueeTween = gsap.to(marqueeContent, {
+                        x: -loopWidth,
+                        duration: 40,
+                        ease: 'none',
+                        repeat: -1,
+                    });
+                }
+            });
+        };
 
-            scrollTimeout = window.setTimeout(() => {
-                isScrolling = false;
-                // Update animation progress based on normalized position
-                const marqueeWidth = getMarqueeWidth();
-                const progress = Math.abs(newX) / marqueeWidth;
-                marqueeAnimation.progress(progress);
-                marqueeAnimation.resume();
-            }, 150);
+        const pauseAutoScroll = () => {
+            marqueeTween?.pause();
+        };
+
+        const resumeAutoScroll = () => {
+            if (!isDragging && !isHovered) {
+                marqueeTween?.resume();
+            }
+        };
+
+        const syncAutoScrollToPosition = () => {
+            if (!marqueeTween || !loopWidth) return;
+            const currentX = getCurrentX();
+            const progress = Math.abs(wrapX(currentX)) / loopWidth;
+            marqueeTween.progress(progress);
+        };
+
+        // Wait for layout/fonts so scrollWidth is accurate
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                refreshMarqueeMetrics();
+                gsap.set(marqueeContent, { x: 0 });
+                startAutoScroll();
+            });
         });
 
-        marquee?.addEventListener('mousedown', (e) => {
+        // Only hijack scroll for horizontal intent — allow normal page scroll
+        marquee.addEventListener('wheel', (e) => {
+            const horizontalIntent =
+                Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey;
+
+            if (!horizontalIntent) return;
+
+            e.preventDefault();
+            pauseAutoScroll();
+
+            const delta = e.deltaX !== 0 ? e.deltaX : e.deltaY;
+            setMarqueeX(getCurrentX() - delta * 1.5);
+            syncAutoScrollToPosition();
+            resumeAutoScroll();
+        }, { passive: false });
+
+        marquee.addEventListener('mousedown', (e) => {
+            if ((e.target as HTMLElement).closest('a')) return;
+
             e.preventDefault();
             startX = e.clientX;
-            dragStartPos = gsap.getProperty('.marquee-content', 'x') as number;
-            marqueeAnimation.pause();
+            dragStartPos = getCurrentX();
+            pauseAutoScroll();
             isDragging = true;
-            if (marquee) marquee.style.cursor = 'grabbing';
+            marquee.style.cursor = 'grabbing';
         });
 
         document.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
-            e.preventDefault();
 
             const deltaX = e.clientX - startX;
-            let newX = dragStartPos + deltaX;
-            
-            // Normalize position for infinite scroll
-            newX = normalizePosition(newX);
-
-            gsap.set('.marquee-content', { x: newX });
+            setMarqueeX(dragStartPos + deltaX);
         });
 
-        document.addEventListener('mouseup', () => {
-            if (isDragging) {
-                isDragging = false;
-                if (marquee) marquee.style.cursor = 'grab';
-                
-                const currentPos = gsap.getProperty('.marquee-content', 'x') as number;
-                const normalizedPos = normalizePosition(currentPos);
-                
-                // Update animation progress based on normalized position
-                const marqueeWidth = getMarqueeWidth();
-                const progress = Math.abs(normalizedPos) / marqueeWidth;
-                marqueeAnimation.progress(progress);
-                
-                window.setTimeout(() => {
-                    if (!isScrolling && !isDragging) {
-                        marqueeAnimation.resume();
-                    }
-                }, 100);
-            }
-        });
-
-        marquee?.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            dragStartPos = gsap.getProperty('.marquee-content', 'x') as number;
-            marqueeAnimation.pause();
-            isDragging = true;
-        });
-
-        marquee?.addEventListener('touchmove', (e) => {
+        const endDrag = () => {
             if (!isDragging) return;
-            e.preventDefault();
+
+            isDragging = false;
+            marquee.style.cursor = 'grab';
+            syncAutoScrollToPosition();
+            resumeAutoScroll();
+        };
+
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('mouseleave', endDrag);
+
+        marquee.addEventListener('touchstart', (e) => {
+            if ((e.target as HTMLElement).closest('a')) return;
+
+            startX = e.touches[0].clientX;
+            dragStartPos = getCurrentX();
+            pauseAutoScroll();
+            isDragging = true;
+        }, { passive: true });
+
+        marquee.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
 
             const deltaX = e.touches[0].clientX - startX;
-            let newX = dragStartPos + deltaX;
-            
-            // Normalize position for infinite scroll
-            newX = normalizePosition(newX);
+            setMarqueeX(dragStartPos + deltaX);
+        }, { passive: true });
 
-            gsap.set('.marquee-content', { x: newX });
+        marquee.addEventListener('touchend', endDrag);
+
+        marquee.addEventListener('mouseenter', () => {
+            isHovered = true;
+            pauseAutoScroll();
+            gsap.to(marqueeContent, { scale: 1.02, duration: 0.3, ease: 'power2.out' });
         });
 
-        marquee?.addEventListener('touchend', () => {
-            isDragging = false;
-            
-            const currentPos = gsap.getProperty('.marquee-content', 'x') as number;
-            const normalizedPos = normalizePosition(currentPos);
-            
-            // Update animation progress based on normalized position
-            const marqueeWidth = getMarqueeWidth();
-            const progress = Math.abs(normalizedPos) / marqueeWidth;
-            marqueeAnimation.progress(progress);
-            
-            window.setTimeout(() => {
-                if (!isScrolling && !isDragging) {
-                    marqueeAnimation.resume();
-                }
-            }, 100);
+        marquee.addEventListener('mouseleave', () => {
+            isHovered = false;
+            resumeAutoScroll();
+            gsap.to(marqueeContent, { scale: 1, duration: 0.3, ease: 'power2.out' });
         });
-
-        marquee?.addEventListener('mouseenter', () => {
-            if (!isDragging && !isScrolling) {
-                marqueeAnimation.pause();
-            }
-            gsap.to('.marquee-content', { scale: 1.02, duration: 0.3, ease: 'power2.out' });
-        });
-
-        marquee?.addEventListener('mouseleave', () => {
-            if (!isDragging && !isScrolling) {
-                marqueeAnimation.resume();
-            }
-            gsap.to('.marquee-content', { scale: 1, duration: 0.3, ease: 'power2.out' });
-        });
-
-        // Removed flip animation - showing back side directly
 
         gsap.timeline({
             scrollTrigger: {
@@ -453,8 +478,8 @@ const projects = [
                 toggleActions: 'play none none reverse'
             }
         })
-        .fromTo('.section-tag', { y: 30, opacity: 0 }, { duration: 0.8, y: 0, opacity: 1, ease: 'power3.out' })
-        .fromTo('.section-title', { y: 50, opacity: 0 }, { duration: 1, y: 0, opacity: 1, ease: 'power3.out' }, '-=0.6')
-        .fromTo('.title-underline', { scaleX: 0 }, { duration: 1, scaleX: 1, ease: 'power3.out' }, '-=0.4');
+        .fromTo('.projects-container .section-tag', { y: 30, opacity: 0 }, { duration: 0.8, y: 0, opacity: 1, ease: 'power3.out' })
+        .fromTo('.projects-container .section-title', { y: 50, opacity: 0 }, { duration: 1, y: 0, opacity: 1, ease: 'power3.out' }, '-=0.6')
+        .fromTo('.projects-container .title-underline', { scaleX: 0 }, { duration: 1, scaleX: 1, ease: 'power3.out' }, '-=0.4');
     });
 </script>

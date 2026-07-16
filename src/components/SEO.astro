@@ -11,8 +11,8 @@ export interface Props {
 }
 
 const {
-  title = "Shine Gupta - Data Scientist & Analytics Expert",
-  description = "Passionate data scientist specializing in machine learning, statistical analysis, and data visualization. Transforming data into insights.",
+  title = "Shine Gupta - AI Engineer & Full-Stack Developer",
+  description = "AI Engineer and Full-Stack Developer building production multi-agent LLM systems, full-stack applications, and research at ICML 2026. 9+ hackathon wins.",
   image = "/og-image.jpeg",
   canonical,
   noindex = false,
@@ -24,6 +24,7 @@ const siteUrl = "https://shine-portfolio-new.netlify.app";
 const author = "Shine Gupta";
 const twitterHandle = "@shine_gupta17";
 const linkedinProfile = "https://www.linkedin.com/in/shine-gupta-62b22b264/";
+const googleScholar = "https://scholar.google.com/citations?user=kx3_tLYAAAAJ&hl=en";
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -31,10 +32,10 @@ const personSchema = {
   name: author,
   url: siteUrl,
   image: `${siteUrl}${image}`,
-  jobTitle: "Data Scientist",
+  jobTitle: "AI Engineer & Full-Stack Developer",
   worksFor: {
     "@type": "Organization",
-    name: "Amply Pvt Ltd",
+    name: "Gnani.ai",
   },
   alumniOf: {
     "@type": "EducationalOrganization",
@@ -42,16 +43,18 @@ const personSchema = {
   },
   knowsAbout: [
     "Machine Learning",
-    "Statistical Analysis",
-    "Data Visualization",
+    "Large Language Models",
+    "AI Agents",
+    "Full-Stack Development",
     "Python",
-    "R",
-    "SQL",
+    "TypeScript",
     "Deep Learning",
-    "Business Intelligence"
+    "RAG",
+    "LangGraph"
   ],
   sameAs: [
     linkedinProfile,
+    googleScholar,
     `https://x.com/shine_gupta17`,
     `https://github.com/Shine-5705`,
   ]
@@ -120,7 +123,7 @@ const websiteSchema = {
         { name: "theme-color", content: "#D7ABC5" },
         { name: "msapplication-TileColor", content: "#D7ABC5" },
         { name: "msapplication-navbutton-color", content: "#D7ABC5" },
-        { name: "keywords", content: "data scientist, machine learning, statistical analysis, data visualization, python, r, sql, analytics, business intelligence, deep learning, AI, data mining, predictive modeling, portfolio, shine gupta" },
+        { name: "keywords", content: "AI engineer, full-stack developer, machine learning, LLM, AI agents, LangGraph, python, typescript, react, next.js, portfolio, shine gupta, hackathon winner, ICML 2026" },
         { name: "author", content: author },
         { name: "copyright", content: `© ${new Date().getFullYear()} ${author}. All rights reserved.` },
         { name: "robots", content: noindex || nofollow ? `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' : 'follow'}` : "index,follow" },
